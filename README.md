@@ -6,7 +6,7 @@
 
 > **The lightweight, human-readable programming language built for AI tensor calculus, machine learning predictions, and rapid desktop UI development.**
 
-🌐 **Official Website & Live Documentation:** [manjas-developer.github.io/Cruise](https://manjas-developer.github.io/Cruise/)
+🌐 **Official Website & Live Documentation:** [manjas-developer.github.io/Cruise](https://manjas-developer.github.io/Cruise-Website/)
 
 ---
 
