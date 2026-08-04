@@ -1,508 +1,686 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta name="google-site-verification" content="nF7ft1NRkQ2g4tpnRBfBJhAYufqgP18n8rAix5-zjdo" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cruise Language — AI-Powered & Human-Readable Programming Language</title>
+    <meta name="description" content="Official documentation, online playground, and language reference for Cruise Language (cruise-lang) v0.2.0, created by Manjas Anand.">
+    <meta name="author" content="Manjas Anand">
+    <meta name="keywords" content="Cruise Language, programming language, AI, ML, Tensors, Pyodide, WebAssembly, Manjas Anand">
+    <title>Cruise Language — AI-Ready Programming Language by Manjas Anand</title>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         cruise: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            900: '#0c4a6e',
-                            accent: '#10b981',
-                            purple: '#a855f7'
-                        }
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                            950: '#042f2e',
+                        },
+                        darkbg: '#070a11',
+                        cardbg: '#0f172a'
                     },
                     fontFamily: {
-                        mono: ['JetBrains Mono', 'Fira Code', 'Menlo', 'monospace'],
-                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+                        mono: ['Fira Code', 'JetBrains Mono', 'Courier New', 'monospace'],
+                        sans: ['Inter', 'system-ui', 'sans-serif']
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts & Icons -->
+
+    <!-- Pyodide Engine for WebAssembly Script Execution -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Inline Dedicated Stylesheet -->
     <style>
+        /* BASE STYLES */
         body {
+            background-color: #070a11;
+            color: #f1f5f9;
             font-family: 'Inter', sans-serif;
-            background-color: #0b0f19;
-            color: #f3f4f6;
+            overflow-x: hidden;
         }
-        .glow-effect {
-            box-shadow: 0 0 50px -10px rgba(14, 165, 233, 0.3);
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-        .code-container {
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
         }
-        .page-section { display: none; }
-        .page-section.active { display: block; }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0d9488;
+        }
+
+        /* ANIMATIONS & GLOWS */
+        .glow-text {
+            text-shadow: 0 0 25px rgba(45, 212, 191, 0.4);
+        }
+        .glow-card {
+            box-shadow: 0 0 40px -10px rgba(13, 148, 136, 0.15);
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(7, 10, 17, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* CODE EDITOR STYLES */
+        .editor-container {
+            position: relative;
+            font-family: 'Fira Code', monospace;
+        }
+        .editor-textarea {
+            background: transparent;
+            color: transparent;
+            caret-color: #2dd4bf;
+            z-index: 2;
+        }
+        .editor-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* SYNTAX HIGHLIGHTING COLORS */
+        .token-keyword { color: #f43f5e; font-weight: 600; }
+        .token-function { color: #38bdf8; font-weight: 600; }
+        .token-string { color: #34d399; }
+        .token-number { color: #fbbf24; }
+        .token-comment { color: #64748b; font-style: italic; }
+        .token-operator { color: #c084fc; }
+
+        /* PULSE DOT ANIMATION */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        .pulse-online {
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-cruise-500 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-cruise-500 selection:text-black">
 
-    <!-- Top Navigation Header -->
-    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
+    <!-- =================================================================== -->
+    <!-- HEADER & NAVIGATION                                                 -->
+    <!-- =================================================================== -->
+    <nav class="sticky top-0 z-50 w-full glass-nav">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" onclick="showPage('home')" class="flex items-center gap-3 text-2xl font-bold tracking-tight text-white hover:opacity-90 transition">
-                <span class="text-3xl">🚢</span>
-                <span class="bg-gradient-to-r from-cruise-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent font-extrabold">Cruise</span>
+            
+            <!-- BRAND LOGO -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <span class="text-3xl transform group-hover:scale-110 transition duration-300">🚢</span>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-black tracking-wider text-white flex items-center">
+                        CRUISE
+                        <span class="ml-2 text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 bg-cruise-500/10 text-cruise-400 rounded-full border border-cruise-500/20">
+                            v0.2.0
+                        </span>
+                    </span>
+                    <span class="text-[10px] tracking-widest text-gray-500 uppercase font-semibold">By Manjas Anand</span>
+                </div>
             </a>
 
-            <!-- Desktop Nav Links -->
-            <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
-                <button onclick="showPage('home')" id="nav-home" class="hover:text-cruise-400 transition">Home</button>
-                <button onclick="showPage('docs')" id="nav-docs" class="hover:text-cruise-400 transition">Documentation</button>
-                <button onclick="showPage('playground')" id="nav-playground" class="hover:text-cruise-400 transition">Live Playground</button>
-                <button onclick="showPage('ecosystem')" id="nav-ecosystem" class="hover:text-cruise-400 transition">Ecosystem</button>
-                <button onclick="showPage('community')" id="nav-community" class="hover:text-amber-400 transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i> Logo Contest
+            <!-- NAVIGATION LINKS -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+                <a href="#playground" class="hover:text-cruise-400 transition">Playground</a>
+                <a href="#features" class="hover:text-cruise-400 transition">Features</a>
+                <a href="#docs" class="hover:text-cruise-400 transition">Documentation</a>
+                <a href="#syntax" class="hover:text-cruise-400 transition">Syntax Guide</a>
+                <a href="#author" class="hover:text-cruise-400 transition">About Creator</a>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="flex items-center space-x-4">
+                <a href="https://pypi.org/project/cruise-lang/" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center space-x-2 px-5 py-2.5 bg-gradient-to-r from-cruise-500 to-teal-600 hover:from-cruise-400 hover:to-teal-500 text-slate-950 font-bold rounded-xl shadow-lg shadow-cruise-500/20 transition transform hover:-translate-y-0.5">
+                    <span>PyPI Package</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+
+                <!-- MOBILE MENU TOGGLE -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
-                <button onclick="showPage('roadmap')" id="nav-roadmap" class="hover:text-cruise-400 transition">Roadmap</button>
             </div>
-
-            <!-- External Links -->
-            <div class="hidden md:flex items-center gap-3">
-                <a href="https://github.com/manjas-developer/Cruise" target="_blank" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl border border-slate-700 transition">
-                    <i class="fa-brands fa-github text-sm"></i> GitHub
-                </a>
-                <a href="https://pypi.org/project/cruise-lang/" target="_blank" class="flex items-center gap-2 bg-cruise-600 hover:bg-cruise-500 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition shadow-lg shadow-cruise-600/30">
-                    <i class="fa-brands fa-python text-sm"></i> PyPI
-                </a>
-            </div>
-
-            <!-- Mobile Hamburger Button -->
-            <button id="mobile-menu-btn" class="lg:hidden text-slate-400 hover:text-white text-2xl">
-                <i class="fa-solid fa-bars"></i>
-            </button>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col gap-4 text-sm font-medium">
-            <button onclick="showPage('home'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Home</button>
-            <button onclick="showPage('docs'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Documentation</button>
-            <button onclick="showPage('playground'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Live Playground</button>
-            <button onclick="showPage('ecosystem'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Ecosystem</button>
-            <button onclick="showPage('community'); toggleMobileMenu();" class="text-left text-amber-400">Logo Contest</button>
-            <button onclick="showPage('roadmap'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Roadmap</button>
-            <div class="flex flex-col gap-2 pt-2 border-t border-slate-800">
-                <a href="https://github.com/manjas-developer/Cruise" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 py-2.5 rounded-lg text-white">
-                    <i class="fa-brands fa-github"></i> GitHub Repo
-                </a>
-                <a href="https://pypi.org/project/cruise-lang/" target="_blank" class="flex items-center justify-center gap-2 bg-cruise-600 py-2.5 rounded-lg text-white">
-                    <i class="fa-brands fa-python"></i> PyPI Package
-                </a>
-            </div>
+        <!-- MOBILE DROPDOWN MENU -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-gray-800 px-6 py-4 space-y-3">
+            <a href="#playground" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-cruise-400 font-medium">Playground</a>
+            <a href="#features" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-cruise-400 font-medium">Features</a>
+            <a href="#docs" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-cruise-400 font-medium">Documentation</a>
+            <a href="#syntax" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-cruise-400 font-medium">Syntax Guide</a>
+            <a href="#author" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-cruise-400 font-medium">About Creator</a>
+            <a href="https://pypi.org/project/cruise-lang/" target="_blank" class="block text-center py-2 bg-cruise-500 text-slate-950 font-bold rounded-lg">Install via PyPI</a>
         </div>
     </nav>
 
-    <!-- PAGE 1: HOME PAGE -->
-    <main id="page-home" class="page-section active flex-grow">
-        <!-- Hero Section -->
-        <section class="relative pt-20 pb-24 overflow-hidden">
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-cruise-500/15 rounded-full blur-[120px] pointer-events-none"></div>
 
-            <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-semibold text-cruise-400 mb-8">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Version 0.1.1 is Live on PyPI
-                </div>
+    <!-- =================================================================== -->
+    <!-- HERO SECTION                                                        -->
+    <!-- =================================================================== -->
+    <section class="relative max-w-7xl mx-auto px-6 pt-20 pb-16 text-center">
+        <!-- BACKGROUND GLOW EFFECTS -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cruise-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-                <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                    The AI-Ready Language<br>
-                    <span class="bg-gradient-to-r from-cruise-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">Built for Simplicity & Speed</span>
-                </h1>
-
-                <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-                    Cruise is a lightweight programming language featuring human-readable syntax, native PyTorch tensor calculus, built-in machine learning predictors, and instant desktop GUI controls.
-                </p>
-
-                <!-- Install Terminal Pill -->
-                <div class="max-w-lg mx-auto mb-10">
-                    <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-2xl flex items-center justify-between shadow-2xl glow-effect">
-                        <div class="flex items-center gap-3 pl-3 text-sm font-mono text-slate-300">
-                            <span class="text-cruise-400 font-bold">$</span>
-                            <span id="install-cmd">pip install cruise-lang</span>
-                        </div>
-                        <button onclick="copyInstallCmd()" id="copy-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 border border-slate-700 transition active:scale-95">
-                            <i class="fa-regular fa-copy"></i> Copy
-                        </button>
-                    </div>
-                </div>
-
-                <!-- CTA Buttons -->
-                <div class="flex flex-wrap items-center justify-center gap-4">
-                    <button onclick="showPage('docs')" class="bg-gradient-to-r from-cruise-600 to-blue-600 hover:from-cruise-500 hover:to-blue-500 text-white font-semibold text-base px-7 py-3.5 rounded-xl shadow-lg shadow-cruise-600/30 transition transform hover:-translate-y-0.5">
-                        Read Documentation <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
-                    </button>
-                    <button onclick="showPage('playground')" class="bg-slate-800/90 hover:bg-slate-800 text-white font-semibold text-base px-7 py-3.5 rounded-xl border border-slate-700 transition">
-                        Try Live Playground ⚡
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Key Features Section -->
-        <section class="py-20 border-t border-slate-800/60 bg-slate-950/50">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Why Developers Love Cruise</h2>
-                    <p class="text-slate-400 text-base">Engineered from the ground up to combine plain-English readability with powerful deep learning backend tools.</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Card 1 -->
-                    <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-cruise-500/50 transition duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-cruise-500/10 text-cruise-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-comment-dots"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Plain-English Syntax</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Intuitive keyword commands like <code class="text-cruise-400">let [var] be [val]</code>, <code class="text-cruise-400">write()</code>, <code class="text-cruise-400">ask()</code>, and <code class="text-cruise-400">times</code> make code read like natural thought.
-                        </p>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-cruise-500/50 transition duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-calculator"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">PyTorch Autograd</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Native support for multi-dimensional tensor arrays with built-in automatic differentiation derivatives (<code class="text-emerald-400">compute_gradients</code>).
-                        </p>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-cruise-500/50 transition duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-brain"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Built-in ML Predictor</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Execute machine learning model predictions directly inside scripts using built-in pre-trained predictors like <code class="text-purple-400">predict("house_prices", val)</code>.
-                        </p>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-cruise-500/50 transition duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-window-restore"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Zero-Config GUI Apps</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Build instant desktop visual application windows and event-driven buttons with single lines of Cruise code (<code class="text-amber-400">background</code>, <code class="text-amber-400">button</code>).
-                        </p>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-cruise-500/50 transition duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-terminal"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Dual Execution Modes</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Run interactively line-by-line via the REPL terminal shell, or execute standalone script files saved with <code class="text-blue-400">.cru</code> or <code class="text-blue-400">.cruise</code> extensions.
-                        </p>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-cruise-500/50 transition duration-300">
-                        <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-floppy-disk"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Memory & File Logs</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Store long-term variable snapshots in an in-memory session timeline log (<code class="text-rose-400">remember</code>) or append data straight to disk files (<code class="text-rose-400">log</code>).
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- PAGE 2: FULL DOCUMENTATION & SYNTAX CHEAT SHEET -->
-    <main id="page-docs" class="page-section flex-grow max-w-7xl mx-auto px-6 py-12 w-full">
-        <div class="text-center max-w-3xl mx-auto mb-14">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">📖 Complete Documentation & Syntax</h1>
-            <p class="text-slate-400 text-base">Master all keyword functions, operators, and standard capabilities built into Cruise.</p>
+        <!-- BADGE -->
+        <div class="inline-flex items-center space-x-2 px-4 py-2 mb-8 text-xs font-semibold tracking-wider text-cruise-300 uppercase bg-cruise-950/60 rounded-full border border-cruise-500/30">
+            <span class="w-2 h-2 rounded-full bg-cruise-400 pulse-online"></span>
+            <span>Created & Designed by Manjas Anand</span>
         </div>
 
-        <!-- Language Syntax Cheat Sheet Table -->
-        <div class="overflow-x-auto rounded-2xl border border-slate-800 shadow-2xl mb-16">
-            <table class="w-full text-left text-sm text-slate-300">
-                <thead class="bg-slate-900 text-slate-200 uppercase font-mono text-xs border-b border-slate-800">
-                    <tr>
-                        <th class="py-4 px-6">Feature Category</th>
-                        <th class="py-4 px-6">Cruise Syntax Command</th>
-                        <th class="py-4 px-6">Description & Behavior</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-800/80 bg-slate-900/40 font-mono">
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">Variables</td>
-                        <td class="py-4 px-6 text-emerald-400">let x be 100</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Assigns integer, decimal, or text string value to a variable name.</td>
-                    </tr>
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">Print Output</td>
-                        <td class="py-4 px-6 text-emerald-400">write("Hello " + name)</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Prints expressions, text, or variable values to standard output console.</td>
-                    </tr>
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">Console Input</td>
-                        <td class="py-4 px-6 text-emerald-400">let val be ask("Prompt:")</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Interactively asks the user for terminal keyboard input.</td>
-                    </tr>
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">Automation Loops</td>
-                        <td class="py-4 px-6 text-emerald-400">3 times write("Hi")</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Repeats the given command N times in a single line.</td>
-                    </tr>
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">Conditionals</td>
-                        <td class="py-4 px-6 text-emerald-400">if x > 10 then write("Pass")</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Evaluates logical expression and executes action command if true.</td>
-                    </tr>
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">Tensors (PyTorch)</td>
-                        <td class="py-4 px-6 text-emerald-400">let t be array([1.0, 2.0])</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Creates a PyTorch tensor matrix with Autograd derivative tracking.</td>
-                    </tr>
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">Autograd Derivatives</td>
-                        <td class="py-4 px-6 text-emerald-400">compute_gradients(y)</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Executes backward pass autograd calculus solver.</td>
-                    </tr>
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">ML Predictions</td>
-                        <td class="py-4 px-6 text-emerald-400">predict("house_prices", 5)</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Runs pre-trained regression models to forecast outputs.</td>
-                    </tr>
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">Desktop UI Window</td>
-                        <td class="py-4 px-6 text-emerald-400">background("blue")</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Initializes visual Tkinter desktop app window with background color.</td>
-                    </tr>
-                    <tr class="hover:bg-slate-900/80 transition">
-                        <td class="py-4 px-6 font-semibold text-cruise-400 font-sans">Interactive Button</td>
-                        <td class="py-4 px-6 text-emerald-400">button("Click", beep(), "green")</td>
-                        <td class="py-4 px-6 font-sans text-slate-400">Creates a clickable UI button linked to a Cruise action.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
+        <!-- MAIN HEADING -->
+        <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-8">
+            The Native <span class="text-transparent bg-clip-text bg-gradient-to-r from-cruise-300 via-teal-400 to-cyan-500 glow-text">AI & UI</span> Programming Language
+        </h1>
 
-    <!-- PAGE 3: INTERACTIVE WEB REPL / PLAYGROUND -->
-    <main id="page-playground" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
-        <div class="text-center max-w-3xl mx-auto mb-10">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">⚡ Interactive Web REPL</h1>
-            <p class="text-slate-400 text-base">Write and run Cruise statements right inside your browser window!</p>
-        </div>
+        <!-- SUBTITLE -->
+        <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+            Designed for high-speed tensor calculations, machine learning models, cross-platform UI rendering, and in-browser WebAssembly execution. Built to run anywhere — from high-powered desktops to iPad terminals.
+        </p>
 
-        <div class="code-container rounded-2xl overflow-hidden shadow-2xl p-6 md:p-8 font-mono">
-            <div class="mb-6">
-                <label class="block text-xs text-slate-400 mb-2 font-sans font-semibold">Cruise Script Editor:</label>
-                <textarea id="repl-input" rows="8" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-emerald-400 focus:outline-none focus:border-cruise-500 font-mono text-sm leading-relaxed" placeholder="let name be 'Manjas'&#10;write('Welcome to Cruise Language, ' + name + '!')&#10;3 times write('Cruising fast! 🚀')"></textarea>
+        <!-- COMMAND BAR -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto">
+            <div class="w-full sm:w-auto flex items-center bg-cardbg border border-gray-800 rounded-2xl px-5 py-3.5 text-sm font-mono text-gray-300 shadow-2xl">
+                <span class="text-cruise-400 mr-3 font-bold">$</span>
+                <span id="pip-command">pip install cruise-lang</span>
+                <button onclick="copyPipCommand()" class="ml-4 p-1.5 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition" title="Copy to Clipboard">
+                    📋
+                </button>
             </div>
+            <a href="#playground" class="w-full sm:w-auto px-8 py-3.5 bg-cruise-500 hover:bg-cruise-400 text-slate-950 font-bold rounded-2xl shadow-lg shadow-cruise-500/25 transition">
+                Try Online Now 🚀
+            </a>
+        </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- INTERACTIVE CODE PLAYGROUND                                          -->
+    <!-- =================================================================== -->
+    <section id="playground" class="max-w-7xl mx-auto px-6 py-12 w-full">
+        <div class="glass-panel rounded-3xl p-6 sm:p-8 glow-card border border-gray-800">
             
-            <div class="flex items-center justify-between">
-                <button onclick="runCode()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-7 py-3.5 rounded-xl transition shadow-lg shadow-emerald-600/20 active:scale-95">
-                    Run Cruise Code 🚀
-                </button>
-                <button onclick="document.getElementById('repl-input').value='';" class="text-xs text-slate-400 hover:text-white font-sans">
-                    Clear Input
-                </button>
-            </div>
-
-            <div class="mt-8">
-                <label class="block text-xs text-slate-400 mb-2 font-sans font-semibold">Terminal Output Console:</label>
-                <div id="repl-output" class="bg-slate-950 border border-slate-800 rounded-xl p-5 text-slate-300 text-xs font-mono min-h-[120px] whitespace-pre-wrap leading-relaxed">Console output will appear here...</div>
-            </div>
-        </div>
-    </main>
-
-    <!-- PAGE 4: ECOSYSTEM & EXTENSIONS -->
-    <main id="page-ecosystem" class="page-section flex-grow max-w-6xl mx-auto px-6 py-12 w-full">
-        <div class="text-center max-w-3xl mx-auto mb-14">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">🧩 Cruise Ecosystem & Libraries</h1>
-            <p class="text-slate-400 text-base">Discover tools, package managers, and standard extensions for Cruise.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl">
-                <div class="w-12 h-12 rounded-xl bg-cruise-500/10 text-cruise-400 flex items-center justify-center text-xl mb-6">
-                    <i class="fa-brands fa-python"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-3">PyPI Package (`cruise-lang`)</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    The core engine is published on PyPI. You can install it on any device with Python 3.8+ installed (including iPad terminals like Pyto/Pythonista).
-                </p>
-                <div class="bg-slate-950 border border-slate-800 p-3 rounded-xl font-mono text-xs text-cruise-400 flex items-center justify-between">
-                    <span>pip install --upgrade cruise-lang</span>
-                    <i class="fa-solid fa-download text-slate-500"></i>
-                </div>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl">
-                <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-6">
-                    <i class="fa-solid fa-microchip"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-3">PyTorch Tensor Engine</h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                    Cruise connects directly to PyTorch standard matrix math algorithms to perform automatic backward derivatives without writing complex C++ boilerplate.
-                </p>
-                <div class="bg-slate-950 border border-slate-800 p-3 rounded-xl font-mono text-xs text-purple-400 flex items-center justify-between">
-                    <span>compute_gradients(y)</span>
-                    <i class="fa-solid fa-bolt text-slate-500"></i>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- PAGE 5: COMMUNITY & LOGO CONTEST -->
-    <main id="page-community" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
-        <div class="bg-gradient-to-r from-slate-900 via-blue-950/60 to-slate-900 border border-amber-500/30 p-8 md:p-12 rounded-3xl relative z-10 shadow-2xl">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-                <div class="max-w-2xl">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-4">
-                        <i class="fa-solid fa-palette"></i> Community Logo Design Callout
+            <!-- PLAYGROUND HEADER BAR -->
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-6 border-b border-gray-800/80 gap-4">
+                
+                <!-- FILE DETAILS & STATUS -->
+                <div class="flex items-center space-x-4">
+                    <div class="flex space-x-2">
+                        <div class="w-3.5 h-3.5 rounded-full bg-rose-500/80"></div>
+                        <div class="w-3.5 h-3.5 rounded-full bg-amber-500/80"></div>
+                        <div class="w-3.5 h-3.5 rounded-full bg-emerald-500/80"></div>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Help Design the Official Logo! 🎨</h2>
-                    <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">
-                        We are looking for a creative, iconic logo for **Cruise Language**! Got design ideas or visual concepts? Send your logo concepts directly to the developer or submit them via GitHub Discussions.
+                    <span class="text-xs font-mono text-gray-400 pl-2 border-l border-gray-800">main.cru</span>
+                    <span id="wasm-status" class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                        ⏳ Initializing Engine...
+                    </span>
+                </div>
+
+                <!-- PRESET SELECTOR & RUN BUTTON -->
+                <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
+                    <select id="example-select" onchange="loadPresetExample()" class="bg-gray-900 border border-gray-800 text-xs font-mono text-gray-300 rounded-xl px-3 py-2 focus:outline-none focus:border-cruise-500">
+                        <option value="basic">Example: Basics & Functions</option>
+                        <option value="tensor">Example: AI Tensors & Math</option>
+                        <option value="http">Example: HTTP Requests</option>
+                        <option value="gui">Example: GUI Components</option>
+                    </select>
+
+                    <button id="run-btn" onclick="runCruiseCode()" class="px-6 py-2.5 bg-gradient-to-r from-cruise-500 to-teal-500 hover:from-cruise-400 hover:to-teal-400 text-slate-950 font-extrabold rounded-xl shadow-lg transition flex items-center space-x-2">
+                        <span>Execute</span>
+                        <span>▶</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CODE EDITOR & TERMINAL GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-6">
+                
+                <!-- LEFT: CODE INPUT EDITOR -->
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider font-mono">Source Code (.cru)</label>
+                        <button onclick="clearEditor()" class="text-[11px] text-gray-500 hover:text-gray-300 font-mono">Clear Editor</button>
+                    </div>
+                    <textarea id="code-editor" class="w-full h-96 bg-slate-950 border border-gray-800/80 text-cruise-300 font-mono text-sm p-4 rounded-2xl focus:outline-none focus:border-cruise-500/80 resize-none shadow-inner leading-relaxed" spellcheck="false"># Cruise Language v0.2.0 Script
+# Created by Manjas Anand
+
+define greet(user):
+    write("Welcome to Cruise, " + user + "!")
+end
+
+greet("Manjas")
+
+# Native Tensor Matrix Computation
+t = tensor([10, 20, 30])
+write(t)
+
+# Loop Iteration Engine
+3 times write("Cruising fast! 🚀")
+</textarea>
+                </div>
+
+                <!-- RIGHT: TERMINAL OUTPUT -->
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider font-mono">Terminal Output</label>
+                        <button onclick="clearTerminal()" class="text-[11px] text-gray-500 hover:text-gray-300 font-mono">Clear Terminal</button>
+                    </div>
+                    <div id="output-terminal" class="w-full h-96 bg-black border border-gray-800/80 font-mono text-sm p-4 rounded-2xl text-emerald-400 overflow-y-auto whitespace-pre-wrap shadow-inner leading-relaxed">
+🚢 Loading Cruise WebAssembly Runtime v0.2.0...
+Please wait while Pyodide builds the environment.
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- CORE FEATURES GRID                                                  -->
+    <!-- =================================================================== -->
+    <section id="features" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Why Cruise Language?</h2>
+            <p class="text-gray-400 text-base sm:text-lg">Engineered from the ground up to unify machine learning operations, clean language syntax, and effortless cross-platform execution.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- FEATURE 1 -->
+            <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
+                <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">🧮</div>
+                <h3 class="text-xl font-bold text-white mb-3">Native ML Tensors</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Perform vector arithmetic, dot products, and matrix operations natively without relying on heavy external syntax overhead.
+                </p>
+            </div>
+
+            <!-- FEATURE 2 -->
+            <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
+                <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">🌐</div>
+                <h3 class="text-xl font-bold text-white mb-3">Built-in HTTP Engine</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Fetch remote API endpoints and post JSON payloads directly with clean, plain-English syntax commands like <code>fetch()</code> and <code>post()</code>.
+                </p>
+            </div>
+
+            <!-- FEATURE 3 -->
+            <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
+                <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">🎨</div>
+                <h3 class="text-xl font-bold text-white mb-3">Cross-Platform UI</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Render desktop GUI components with graceful headless fallback handling, making it fully compatible with iPad terminal emulators.
+                </p>
+            </div>
+
+            <!-- FEATURE 4 -->
+            <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
+                <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">🧠</div>
+                <h3 class="text-xl font-bold text-white mb-3">Scoped Function Memory</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Features structured function definitions (<code>define ... end</code>) with dynamic argument binding and clean lexical scoping.
+                </p>
+            </div>
+
+            <!-- FEATURE 5 -->
+            <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
+                <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">📱</div>
+                <h3 class="text-xl font-bold text-white mb-3">WebAssembly Browser Shell</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Powered by WebAssembly, Cruise scripts can be compiled and executed client-side inside any modern web browser.
+                </p>
+            </div>
+
+            <!-- FEATURE 6 -->
+            <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
+                <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">📄</div>
+                <h3 class="text-xl font-bold text-white mb-3">Dual File Associations</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Full CLI interpreter support for both <code>.cru</code> and <code>.crui</code> file extensions out of the box.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- SYNTAX GUIDE & DOCUMENTATION                                        -->
+    <!-- =================================================================== -->
+    <section id="syntax" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Syntax Quick Reference</h2>
+            <p class="text-gray-400 text-base">Master Cruise Language syntax in under 5 minutes.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- CODE CARD 1: FUNCTIONS -->
+            <div class="glass-panel rounded-3xl p-6 border border-gray-800">
+                <h3 class="text-lg font-bold text-white mb-3 flex items-center">
+                    <span class="text-cruise-400 mr-2">1.</span> Declaring Functions
+                </h3>
+                <pre class="bg-black/80 p-4 rounded-xl text-xs font-mono text-gray-300 overflow-x-auto leading-relaxed"><code><span class="token-comment"># Define custom function block</span>
+<span class="token-keyword">define</span> calculate_total(price, tax):
+    total = price + tax
+    write(<span class="token-string">"Final Amount:"</span>)
+    write(total)
+<span class="token-keyword">end</span>
+
+<span class="token-comment"># Invoke function</span>
+calculate_total(100, 18)</code></pre>
+            </div>
+
+            <!-- CODE CARD 2: TENSORS -->
+            <div class="glass-panel rounded-3xl p-6 border border-gray-800">
+                <h3 class="text-lg font-bold text-white mb-3 flex items-center">
+                    <span class="text-cruise-400 mr-2">2.</span> Tensor Mathematics
+                </h3>
+                <pre class="bg-black/80 p-4 rounded-xl text-xs font-mono text-gray-300 overflow-x-auto leading-relaxed"><code><span class="token-comment"># Create scalar or vector tensors</span>
+vec1 = <span class="token-function">tensor</span>([1.0, 2.0, 3.0])
+vec2 = <span class="token-function">tensor</span>([4.0, 5.0, 6.0])
+
+<span class="token-comment"># Perform operations</span>
+write(vec1)
+write(vec2)</code></pre>
+            </div>
+
+            <!-- CODE CARD 3: HTTP API -->
+            <div class="glass-panel rounded-3xl p-6 border border-gray-800">
+                <h3 class="text-lg font-bold text-white mb-3 flex items-center">
+                    <span class="text-cruise-400 mr-2">3.</span> Fetching Remote APIs
+                </h3>
+                <pre class="bg-black/80 p-4 rounded-xl text-xs font-mono text-gray-300 overflow-x-auto leading-relaxed"><code><span class="token-comment"># HTTP GET request</span>
+response = <span class="token-function">fetch</span>(<span class="token-string">"https://api.github.com"</span>)
+write(response)
+
+<span class="token-comment"># HTTP POST request</span>
+data = <span class="token-function">post</span>(<span class="token-string">"https://httpbin.org/post"</span>)</code></pre>
+            </div>
+
+            <!-- CODE CARD 4: UI BUILDER -->
+            <div class="glass-panel rounded-3xl p-6 border border-gray-800">
+                <h3 class="text-lg font-bold text-white mb-3 flex items-center">
+                    <span class="text-cruise-400 mr-2">4.</span> GUI Rendering
+                </h3>
+                <pre class="bg-black/80 p-4 rounded-xl text-xs font-mono text-gray-300 overflow-x-auto leading-relaxed"><code><span class="token-comment"># Render desktop window components</span>
+<span class="token-function">background</span>(<span class="token-string">"darkslate"</span>)
+<span class="token-function">button</span>(<span class="token-string">"Launch Rocket 🚀"</span>)
+
+<span class="token-comment"># Repeat execution loop</span>
+<span class="token-number">5</span> <span class="token-keyword">times</span> write(<span class="token-string">"Rendering UI Frame..."</span>)</code></pre>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- ABOUT THE AUTHOR SECTION                                            -->
+    <!-- =================================================================== -->
+    <section id="author" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-gray-800 relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-cruise-500/10 blur-3xl rounded-full pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-4 max-w-2xl">
+                    <div class="inline-block px-3 py-1 bg-cruise-500/10 text-cruise-400 text-xs font-bold rounded-md uppercase tracking-widest border border-cruise-500/20">
+                        Lead Developer & Architect
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Created by Manjas Anand</h2>
+                    <p class="text-gray-400 leading-relaxed text-sm sm:text-base">
+                        Cruise Language was designed and authored by <strong>Manjas Anand</strong> to streamline machine learning workflows and multi-platform application design. Developed with a vision to make tensor calculus and software creation accessible across desktop and mobile terminal environments.
                     </p>
-                    <div class="flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-300">
-                        <span class="bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-700">🚢 Ship / Cruise Theme</span>
-                        <span class="bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-700">⚡ Speed / Velocity</span>
-                        <span class="bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-700">🧠 AI / Tensors</span>
+                    <div class="pt-2 flex flex-wrap gap-4 text-xs font-mono text-gray-400">
+                        <span class="px-3 py-1.5 bg-gray-900 border border-gray-800 rounded-lg">👤 Creator: Manjas Anand</span>
+                        <span class="px-3 py-1.5 bg-gray-900 border border-gray-800 rounded-lg">📦 Package: cruise-lang</span>
+                        <span class="px-3 py-1.5 bg-gray-900 border border-gray-800 rounded-lg">📄 License: MIT</span>
                     </div>
                 </div>
 
-                <div class="flex flex-col items-center justify-center w-full lg:w-auto">
-                    <a href="mailto:manjasanand08@gmail.com?subject=Cruise%20Language%20Logo%20Design%20Submission" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg shadow-amber-500/20 text-center transition flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> Send Logo Idea
-                    </a>
-                    <span class="text-xs text-slate-400 mt-3 font-mono">manjasanand08@gmail.com</span>
+                <div class="flex-shrink-0 text-center">
+                    <div class="w-32 h-32 rounded-3xl bg-gradient-to-tr from-cruise-500 to-teal-400 p-1 shadow-2xl shadow-cruise-500/20">
+                        <div class="w-full h-full bg-slate-950 rounded-[22px] flex items-center justify-center text-5xl">
+                            👨‍💻
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- PAGE 6: ROADMAP -->
-    <main id="page-roadmap" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
-        <div class="text-center max-w-3xl mx-auto mb-14">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">🗺️ Project Roadmap</h1>
-            <p class="text-slate-400 text-base">Future features and upcoming release goals for Cruise Language.</p>
-        </div>
 
-        <div class="space-y-6">
-            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex items-center justify-between">
-                <div>
-                    <span class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-wider">v0.1.1 — Current Release</span>
-                    <h3 class="text-xl font-bold text-white mt-1">Core PyPI Package & Autograd Tensors</h3>
-                    <p class="text-xs text-slate-400 mt-1">Published REPL shell, PyTorch autograd gradients, built-in ML predictors, and Tkinter GUI bindings.</p>
-                </div>
-                <span class="bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-4 py-2 rounded-xl border border-emerald-500/30">Completed</span>
-            </div>
-
-            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex items-center justify-between">
-                <div>
-                    <span class="text-xs font-bold font-mono text-amber-400 uppercase tracking-wider">v0.2.0 — In Development</span>
-                    <h3 class="text-xl font-bold text-white mt-1">Custom User Functions & Web Assembly</h3>
-                    <p class="text-xs text-slate-400 mt-1">Support for multi-line user-defined function blocks (`def`), HTTP request libraries, and native browser execution.</p>
-                </div>
-                <span class="bg-amber-500/20 text-amber-400 text-xs font-semibold px-4 py-2 rounded-xl border border-amber-500/30">In Progress</span>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800/80 py-12 mt-12">
+    <!-- =================================================================== -->
+    <!-- FOOTER                                                              -->
+    <!-- =================================================================== -->
+    <footer class="w-full border-t border-gray-800/80 py-12 bg-slate-950/80">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-3">
+            
+            <div class="flex items-center space-x-3">
                 <span class="text-2xl">🚢</span>
-                <span class="font-extrabold text-white text-lg">Cruise Language</span>
-                <span class="text-xs text-slate-500 ml-2">© 2026 Manjas Anand</span>
+                <div>
+                    <p class="text-sm font-bold text-white">Cruise Programming Language</p>
+                    <p class="text-xs text-gray-500">Designed & Developed by <span class="text-gray-300 font-medium">Manjas Anand</span></p>
+                </div>
             </div>
 
-            <div class="flex items-center gap-6 text-sm text-slate-400 font-medium">
-                <a href="https://github.com/manjas-developer/Cruise" target="_blank" class="hover:text-white transition flex items-center gap-1.5">
-                    <i class="fa-brands fa-github"></i> GitHub
-                </a>
-                <a href="https://pypi.org/project/cruise-lang/" target="_blank" class="hover:text-white transition flex items-center gap-1.5">
-                    <i class="fa-brands fa-python"></i> PyPI Package
-                </a>
-                <a href="mailto:manjasanand08@gmail.com" class="hover:text-white transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-envelope"></i> Contact
-                </a>
+            <div class="flex items-center space-x-6 text-xs text-gray-400 font-medium">
+                <a href="#playground" class="hover:text-cruise-400 transition">Playground</a>
+                <a href="#features" class="hover:text-cruise-400 transition">Features</a>
+                <a href="#syntax" class="hover:text-cruise-400 transition">Syntax</a>
+                <a href="https://pypi.org/project/cruise-lang/" target="_blank" class="hover:text-cruise-400 transition">PyPI Release</a>
             </div>
+
+            <p class="text-xs text-gray-600">
+                Released under MIT License • 2026
+            </p>
         </div>
     </footer>
 
-    <!-- Interactive Navigation Router & REPL Script -->
+
+    <!-- =================================================================== -->
+    <!-- INLINE JAVASCRIPT & WEBASSEMBLY ENGINE INTEGRATION                  -->
+    <!-- =================================================================== -->
     <script>
-        // Page Navigation Switcher
-        function showPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(page => page.classList.remove('active'));
-            document.getElementById('page-' + pageId).classList.add('active');
-            window.scrollTo(0, 0);
+        // -----------------------------------------------------------------
+        // 1. GLOBAL STATE & PRESET CODE EXAMPLES
+        // -----------------------------------------------------------------
+        let pyodideInstance = null;
+
+        const CODE_PRESETS = {
+            basic: `# Cruise Language v0.2.0 Demo
+# Created by Manjas Anand
+
+define greet(user):
+    write("Welcome to Cruise, " + user + "!")
+end
+
+greet("Manjas")
+
+# Native Tensor Matrix Computation
+t = tensor([10, 20, 30])
+write(t)
+
+# Loop Iteration Engine
+3 times write("Cruising fast! 🚀")`,
+
+            tensor: `# Advanced Tensor Operations
+# Designed by Manjas Anand
+
+v1 = tensor([1.5, 2.5, 3.5])
+v2 = tensor([10.0, 20.0, 30.0])
+
+write("Vector 1:")
+write(v1)
+
+write("Vector 2:")
+write(v2)
+
+4 times write("Calculating model weights...")`,
+
+            http: `# HTTP Request Library Demo
+
+write("Fetching API data...")
+response = fetch("https://api.github.com")
+write("Response Received!")
+write(response)`,
+
+            gui: `# Cross-Platform GUI Component Suite
+
+background("navy")
+button("Submit Form")
+button("Cancel")
+
+2 times write("Rendered UI Window successfully!")`
+        };
+
+
+        // -----------------------------------------------------------------
+        // 2. INITIALIZE WEBASSEMBLY (PYODIDE ENGINE)
+        // -----------------------------------------------------------------
+        async function initPyodideEngine() {
+            const statusBadge = document.getElementById("wasm-status");
+            const terminal = document.getElementById("output-terminal");
+
+            try {
+                pyodideInstance = await loadPyodide();
+                await pyodideInstance.loadPackage("micropip");
+                
+                // Install cruise-lang into WebAssembly context
+                await pyodideInstance.runPythonAsync(`
+                    import micropip
+                    await micropip.install('cruise-lang')
+                    from cruise import CruiseInterpreter
+                    interpreter = CruiseInterpreter()
+                `);
+
+                statusBadge.innerText = "✓ Engine Ready";
+                statusBadge.className = "text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                
+                terminal.innerText = "🚢 Cruise v0.2.0 WebAssembly Engine Initialized!\nAuthor: Manjas Anand\n\nClick 'Execute' to run the script.";
+            } catch (err) {
+                statusBadge.innerText = "❌ Engine Error";
+                statusBadge.className = "text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20";
+                terminal.innerText = "⚠️ WebAssembly initialization failed: " + err;
+            }
         }
 
-        // Toggle Mobile Menu
+
+        // -----------------------------------------------------------------
+        // 3. EXECUTE CODE IN BROWSER
+        // -----------------------------------------------------------------
+        async function runCruiseCode() {
+            const terminal = document.getElementById("output-terminal");
+            const code = document.getElementById("code-editor").value;
+
+            if (!pyodideInstance) {
+                terminal.innerText = "⏳ Please wait, Cruise WebAssembly engine is still loading...";
+                return;
+            }
+
+            terminal.innerText = "⚡ Executing script...\n";
+
+            try {
+                pyodideInstance.globals.set("user_code", code);
+                let result = await pyodideInstance.runPythonAsync(`
+                    import io
+                    import sys
+                    
+                    # Capture standard output stream
+                    buffer = io.StringIO()
+                    sys.stdout = buffer
+                    
+                    try:
+                        interpreter.execute_script(user_code)
+                    except Exception as e:
+                        print("❌ Runtime Error:", e)
+                    
+                    sys.stdout = sys.__stdout__
+                    buffer.getvalue()
+                `);
+
+                terminal.innerText = result || "✓ Script executed successfully with no console output.";
+            } catch (err) {
+                terminal.innerText = "❌ Execution Error:\n" + err;
+            }
+        }
+
+
+        // -----------------------------------------------------------------
+        // 4. HELPER FUNCTIONS
+        // -----------------------------------------------------------------
+        function loadPresetExample() {
+            const select = document.getElementById("example-select");
+            const editor = document.getElementById("code-editor");
+            const selectedVal = select.value;
+
+            if (CODE_PRESETS[selectedVal]) {
+                editor.value = CODE_PRESETS[selectedVal];
+            }
+        }
+
+        function clearEditor() {
+            document.getElementById("code-editor").value = "";
+        }
+
+        function clearTerminal() {
+            document.getElementById("output-terminal").innerText = "";
+        }
+
+        function copyPipCommand() {
+            navigator.clipboard.writeText("pip install cruise-lang");
+            alert("Copied command: 'pip install cruise-lang' to clipboard!");
+        }
+
         function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
-        document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
-
-        // Copy Terminal Command
-        function copyInstallCmd() {
-            const cmdText = document.getElementById('install-cmd').innerText;
-            navigator.clipboard.writeText(cmdText);
-            const btn = document.getElementById('copy-btn');
-            btn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i> Copied!';
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
-            }, 2000);
+            const menu = document.getElementById("mobile-menu");
+            menu.classList.toggle("hidden");
         }
 
-        // Simple Web REPL Simulator
-        function runCode() {
-            const input = document.getElementById('repl-input').value;
-            const outputBox = document.getElementById('repl-output');
-            
-            let lines = input.split('\n');
-            let outText = "";
 
-            lines.forEach(line => {
-                line = line.trim();
-                if(line.startsWith('write(')) {
-                    let content = line.substring(6, line.length - 1).replace(/['"]/g, '');
-                    outText += content + "\n";
-                } else if(line.includes('times write(')) {
-                    let count = parseInt(line.split(' ')[0]) || 1;
-                    let text = line.split('write(')[1].replace(/['")]/g, '');
-                    for(let i=0; i<count; i++) outText += text + "\n";
-                }
-            });
-
-            outputBox.innerText = outText || "Code executed successfully (no print output).";
-        }
+        // -----------------------------------------------------------------
+        // 5. STARTUP HOOKS
+        // -----------------------------------------------------------------
+        window.addEventListener("DOMContentLoaded", () => {
+            initPyodideEngine();
+        });
     </script>
 </body>
 </html>
