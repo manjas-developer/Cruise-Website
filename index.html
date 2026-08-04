@@ -507,15 +507,14 @@ button("Cancel")
                 pyodideInstance = await loadPyodide();
                 await pyodideInstance.loadPackage("micropip");
                 
-                // Install cruise-lang into WebAssembly context & declare global interpreter
+                // Injecting directly into Python's builtins so interpreter exists globally across calls
                 await pyodideInstance.runPythonAsync(`
                     import micropip
                     await micropip.install('cruise-lang')
                     from cruise import CruiseInterpreter
-                    
-                    # Global binding fix
-                    global interpreter
-                    interpreter = CruiseInterpreter()
+                    import builtins
+
+                    builtins.interpreter = CruiseInterpreter()
                 `);
 
                 statusBadge.innerText = "✓ Engine Ready";
@@ -546,13 +545,14 @@ button("Cancel")
                 let result = await pyodideInstance.runPythonAsync(`
                     import io
                     import sys
+                    import builtins
                     
                     # Capture standard output stream
                     buffer = io.StringIO()
                     sys.stdout = buffer
                     
                     try:
-                        interpreter.execute_script(user_code)
+                        builtins.interpreter.execute_script(user_code)
                     except Exception as e:
                         print("❌ Runtime Error:", e)
                     
