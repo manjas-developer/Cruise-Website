@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cruise Language — AI-Powered & Human-Readable Programming Language</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none'><path d='M20 40 Q40 20, 60 25 T80 30' stroke='%2338bdf8' stroke-width='6' stroke-linecap='round'/><path d='M15 50 Q45 30, 70 35 T90 40' stroke='%2338bdf8' stroke-width='7' stroke-linecap='round'/><path d='M10 65 Q30 55, 55 60 T85 58' stroke='%2338bdf8' stroke-width='6' stroke-linecap='round'/></svg>">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -31,13 +35,17 @@
             }
         }
     </script>
+
     <!-- Pyodide WebAssembly Engine for Pure In-Browser Execution -->
     <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+
     <!-- Google Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Inline Styles -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -55,6 +63,7 @@
         .page-section.active { display: block; }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col justify-between selection:bg-cruise-500 selection:text-white">
 
     <!-- Top Navigation Header -->
