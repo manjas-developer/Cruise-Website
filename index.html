@@ -137,13 +137,9 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-cruise-500 selection:text-black">
 
-    <!-- =================================================================== -->
-    <!-- HEADER & NAVIGATION                                                 -->
-    <!-- =================================================================== -->
+    <!-- NAVIGATION BAR -->
     <nav class="sticky top-0 z-50 w-full glass-nav">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            
-            <!-- BRAND LOGO -->
             <a href="#" class="flex items-center space-x-3 group">
                 <span class="text-3xl transform group-hover:scale-110 transition duration-300">🚢</span>
                 <div class="flex flex-col">
@@ -157,7 +153,6 @@
                 </div>
             </a>
 
-            <!-- NAVIGATION LINKS -->
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
                 <a href="#playground" class="hover:text-cruise-400 transition">Playground</a>
                 <a href="#features" class="hover:text-cruise-400 transition">Features</a>
@@ -166,21 +161,18 @@
                 <a href="#author" class="hover:text-cruise-400 transition">About Creator</a>
             </div>
 
-            <!-- ACTION BUTTONS -->
             <div class="flex items-center space-x-4">
                 <a href="https://pypi.org/project/cruise-lang/" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center space-x-2 px-5 py-2.5 bg-gradient-to-r from-cruise-500 to-teal-600 hover:from-cruise-400 hover:to-teal-500 text-slate-950 font-bold rounded-xl shadow-lg shadow-cruise-500/20 transition transform hover:-translate-y-0.5">
                     <span>PyPI Package</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                 </a>
 
-                <!-- MOBILE MENU TOGGLE -->
                 <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-400 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
         </div>
 
-        <!-- MOBILE DROPDOWN MENU -->
         <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-gray-800 px-6 py-4 space-y-3">
             <a href="#playground" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-cruise-400 font-medium">Playground</a>
             <a href="#features" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-cruise-400 font-medium">Features</a>
@@ -191,31 +183,23 @@
         </div>
     </nav>
 
-
-    <!-- =================================================================== -->
-    <!-- HERO SECTION                                                        -->
-    <!-- =================================================================== -->
+    <!-- HERO SECTION -->
     <section class="relative max-w-7xl mx-auto px-6 pt-20 pb-16 text-center">
-        <!-- BACKGROUND GLOW EFFECTS -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cruise-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-        <!-- BADGE -->
         <div class="inline-flex items-center space-x-2 px-4 py-2 mb-8 text-xs font-semibold tracking-wider text-cruise-300 uppercase bg-cruise-950/60 rounded-full border border-cruise-500/30">
             <span class="w-2 h-2 rounded-full bg-cruise-400 pulse-online"></span>
             <span>Created & Designed by Manjas Anand</span>
         </div>
 
-        <!-- MAIN HEADING -->
         <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-8">
             The Native <span class="text-transparent bg-clip-text bg-gradient-to-r from-cruise-300 via-teal-400 to-cyan-500 glow-text">AI & UI</span> Programming Language
         </h1>
 
-        <!-- SUBTITLE -->
         <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
             Designed for high-speed tensor calculations, machine learning models, cross-platform UI rendering, and in-browser WebAssembly execution. Built to run anywhere — from high-powered desktops to iPad terminals.
         </p>
 
-        <!-- COMMAND BAR -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto">
             <div class="w-full sm:w-auto flex items-center bg-cardbg border border-gray-800 rounded-2xl px-5 py-3.5 text-sm font-mono text-gray-300 shadow-2xl">
                 <span class="text-cruise-400 mr-3 font-bold">$</span>
@@ -230,17 +214,10 @@
         </div>
     </section>
 
-
-    <!-- =================================================================== -->
-    <!-- INTERACTIVE CODE PLAYGROUND                                          -->
-    <!-- =================================================================== -->
+    <!-- INTERACTIVE CODE PLAYGROUND -->
     <section id="playground" class="max-w-7xl mx-auto px-6 py-12 w-full">
         <div class="glass-panel rounded-3xl p-6 sm:p-8 glow-card border border-gray-800">
-            
-            <!-- PLAYGROUND HEADER BAR -->
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-6 border-b border-gray-800/80 gap-4">
-                
-                <!-- FILE DETAILS & STATUS -->
                 <div class="flex items-center space-x-4">
                     <div class="flex space-x-2">
                         <div class="w-3.5 h-3.5 rounded-full bg-rose-500/80"></div>
@@ -253,7 +230,6 @@
                     </span>
                 </div>
 
-                <!-- PRESET SELECTOR & RUN BUTTON -->
                 <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
                     <select id="example-select" onchange="loadPresetExample()" class="bg-gray-900 border border-gray-800 text-xs font-mono text-gray-300 rounded-xl px-3 py-2 focus:outline-none focus:border-cruise-500">
                         <option value="basic">Example: Basics & Functions</option>
@@ -269,10 +245,7 @@
                 </div>
             </div>
 
-            <!-- CODE EDITOR & TERMINAL GRID -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-6">
-                
-                <!-- LEFT: CODE INPUT EDITOR -->
                 <div class="flex flex-col">
                     <div class="flex items-center justify-between mb-2">
                         <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider font-mono">Source Code (.cru)</label>
@@ -296,7 +269,6 @@ write(t)
 </textarea>
                 </div>
 
-                <!-- RIGHT: TERMINAL OUTPUT -->
                 <div class="flex flex-col">
                     <div class="flex items-center justify-between mb-2">
                         <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider font-mono">Terminal Output</label>
@@ -311,10 +283,7 @@ Please wait while Pyodide builds the environment.
         </div>
     </section>
 
-
-    <!-- =================================================================== -->
-    <!-- CORE FEATURES GRID                                                  -->
-    <!-- =================================================================== -->
+    <!-- CORE FEATURES GRID -->
     <section id="features" class="max-w-7xl mx-auto px-6 py-20">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Why Cruise Language?</h2>
@@ -322,68 +291,45 @@ Please wait while Pyodide builds the environment.
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- FEATURE 1 -->
             <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
                 <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">🧮</div>
                 <h3 class="text-xl font-bold text-white mb-3">Native ML Tensors</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Perform vector arithmetic, dot products, and matrix operations natively without relying on heavy external syntax overhead.
-                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">Perform vector arithmetic, dot products, and matrix operations natively without relying on heavy external syntax overhead.</p>
             </div>
 
-            <!-- FEATURE 2 -->
             <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
                 <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">🌐</div>
                 <h3 class="text-xl font-bold text-white mb-3">Built-in HTTP Engine</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Fetch remote API endpoints and post JSON payloads directly with clean, plain-English syntax commands like <code>fetch()</code> and <code>post()</code>.
-                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">Fetch remote API endpoints and post JSON payloads directly with clean, plain-English syntax commands like <code>fetch()</code> and <code>post()</code>.</p>
             </div>
 
-            <!-- FEATURE 3 -->
             <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
                 <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">🎨</div>
                 <h3 class="text-xl font-bold text-white mb-3">Cross-Platform UI</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Render desktop GUI components with graceful headless fallback handling, making it fully compatible with iPad terminal emulators.
-                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">Render desktop GUI components with graceful headless fallback handling, making it fully compatible with iPad terminal emulators.</p>
             </div>
 
-            <!-- FEATURE 4 -->
             <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
                 <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">🧠</div>
                 <h3 class="text-xl font-bold text-white mb-3">Scoped Function Memory</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Features structured function definitions (<code>define ... end</code>) with dynamic argument binding and clean lexical scoping.
-                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">Features structured function definitions (<code>define ... end</code>) with dynamic argument binding and clean lexical scoping.</p>
             </div>
 
-            <!-- FEATURE 5 -->
             <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
                 <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">📱</div>
                 <h3 class="text-xl font-bold text-white mb-3">WebAssembly Browser Shell</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Powered by WebAssembly, Cruise scripts can be compiled and executed client-side inside any modern web browser.
-                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">Powered by WebAssembly, Cruise scripts can be compiled and executed client-side inside any modern web browser.</p>
             </div>
 
-            <!-- FEATURE 6 -->
             <div class="glass-panel p-8 rounded-3xl hover:border-cruise-500/50 transition duration-300">
                 <div class="w-12 h-12 rounded-2xl bg-cruise-500/10 border border-cruise-500/20 flex items-center justify-center text-2xl mb-6">📄</div>
                 <h3 class="text-xl font-bold text-white mb-3">Dual File Associations</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Full CLI interpreter support for both <code>.cru</code> and <code>.crui</code> file extensions out of the box.
-                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">Full CLI interpreter support for both <code>.cru</code> and <code>.crui</code> file extensions out of the box.</p>
             </div>
-
         </div>
     </section>
 
-
-    <!-- =================================================================== -->
-    <!-- SYNTAX GUIDE & DOCUMENTATION                                        -->
-    <!-- =================================================================== -->
+    <!-- SYNTAX GUIDE & DOCUMENTATION -->
     <section id="syntax" class="max-w-7xl mx-auto px-6 py-20">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Syntax Quick Reference</h2>
@@ -391,8 +337,6 @@ Please wait while Pyodide builds the environment.
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <!-- CODE CARD 1: FUNCTIONS -->
             <div class="glass-panel rounded-3xl p-6 border border-gray-800">
                 <h3 class="text-lg font-bold text-white mb-3 flex items-center">
                     <span class="text-cruise-400 mr-2">1.</span> Declaring Functions
@@ -408,7 +352,6 @@ Please wait while Pyodide builds the environment.
 calculate_total(100, 18)</code></pre>
             </div>
 
-            <!-- CODE CARD 2: TENSORS -->
             <div class="glass-panel rounded-3xl p-6 border border-gray-800">
                 <h3 class="text-lg font-bold text-white mb-3 flex items-center">
                     <span class="text-cruise-400 mr-2">2.</span> Tensor Mathematics
@@ -422,7 +365,6 @@ write(vec1)
 write(vec2)</code></pre>
             </div>
 
-            <!-- CODE CARD 3: HTTP API -->
             <div class="glass-panel rounded-3xl p-6 border border-gray-800">
                 <h3 class="text-lg font-bold text-white mb-3 flex items-center">
                     <span class="text-cruise-400 mr-2">3.</span> Fetching Remote APIs
@@ -435,7 +377,6 @@ write(response)
 data = <span class="token-function">post</span>(<span class="token-string">"https://httpbin.org/post"</span>)</code></pre>
             </div>
 
-            <!-- CODE CARD 4: UI BUILDER -->
             <div class="glass-panel rounded-3xl p-6 border border-gray-800">
                 <h3 class="text-lg font-bold text-white mb-3 flex items-center">
                     <span class="text-cruise-400 mr-2">4.</span> GUI Rendering
@@ -447,14 +388,10 @@ data = <span class="token-function">post</span>(<span class="token-string">"http
 <span class="token-comment"># Repeat execution loop</span>
 <span class="token-number">5</span> <span class="token-keyword">times</span> write(<span class="token-string">"Rendering UI Frame..."</span>)</code></pre>
             </div>
-
         </div>
     </section>
 
-
-    <!-- =================================================================== -->
-    <!-- ABOUT THE AUTHOR SECTION                                            -->
-    <!-- =================================================================== -->
+    <!-- ABOUT THE AUTHOR SECTION -->
     <section id="author" class="max-w-7xl mx-auto px-6 py-20">
         <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-gray-800 relative overflow-hidden">
             <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-cruise-500/10 blur-3xl rounded-full pointer-events-none"></div>
@@ -486,13 +423,9 @@ data = <span class="token-function">post</span>(<span class="token-string">"http
         </div>
     </section>
 
-
-    <!-- =================================================================== -->
-    <!-- FOOTER                                                              -->
-    <!-- =================================================================== -->
+    <!-- FOOTER -->
     <footer class="w-full border-t border-gray-800/80 py-12 bg-slate-950/80">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            
             <div class="flex items-center space-x-3">
                 <span class="text-2xl">🚢</span>
                 <div>
@@ -514,14 +447,8 @@ data = <span class="token-function">post</span>(<span class="token-string">"http
         </div>
     </footer>
 
-
-    <!-- =================================================================== -->
-    <!-- INLINE JAVASCRIPT & WEBASSEMBLY ENGINE INTEGRATION                  -->
-    <!-- =================================================================== -->
+    <!-- INLINE JAVASCRIPT & WEBASSEMBLY ENGINE INTEGRATION -->
     <script>
-        // -----------------------------------------------------------------
-        // 1. GLOBAL STATE & PRESET CODE EXAMPLES
-        // -----------------------------------------------------------------
         let pyodideInstance = null;
 
         const CODE_PRESETS = {
@@ -571,10 +498,7 @@ button("Cancel")
 2 times write("Rendered UI Window successfully!")`
         };
 
-
-        // -----------------------------------------------------------------
-        // 2. INITIALIZE WEBASSEMBLY (PYODIDE ENGINE)
-        // -----------------------------------------------------------------
+        // INITIALIZE WEBASSEMBLY ENGINE
         async function initPyodideEngine() {
             const statusBadge = document.getElementById("wasm-status");
             const terminal = document.getElementById("output-terminal");
@@ -583,11 +507,14 @@ button("Cancel")
                 pyodideInstance = await loadPyodide();
                 await pyodideInstance.loadPackage("micropip");
                 
-                // Install cruise-lang into WebAssembly context
+                // Install cruise-lang into WebAssembly context & declare global interpreter
                 await pyodideInstance.runPythonAsync(`
                     import micropip
                     await micropip.install('cruise-lang')
                     from cruise import CruiseInterpreter
+                    
+                    # Global binding fix
+                    global interpreter
                     interpreter = CruiseInterpreter()
                 `);
 
@@ -602,10 +529,7 @@ button("Cancel")
             }
         }
 
-
-        // -----------------------------------------------------------------
-        // 3. EXECUTE CODE IN BROWSER
-        // -----------------------------------------------------------------
+        // EXECUTE CODE IN BROWSER
         async function runCruiseCode() {
             const terminal = document.getElementById("output-terminal");
             const code = document.getElementById("code-editor").value;
@@ -642,10 +566,6 @@ button("Cancel")
             }
         }
 
-
-        // -----------------------------------------------------------------
-        // 4. HELPER FUNCTIONS
-        // -----------------------------------------------------------------
         function loadPresetExample() {
             const select = document.getElementById("example-select");
             const editor = document.getElementById("code-editor");
@@ -674,10 +594,6 @@ button("Cancel")
             menu.classList.toggle("hidden");
         }
 
-
-        // -----------------------------------------------------------------
-        // 5. STARTUP HOOKS
-        // -----------------------------------------------------------------
         window.addEventListener("DOMContentLoaded", () => {
             initPyodideEngine();
         });
