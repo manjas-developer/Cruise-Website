@@ -36,9 +36,6 @@
         }
     </script>
 
-    <!-- Pyodide WebAssembly Engine for Pure In-Browser Execution -->
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
-
     <!-- Google Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +80,6 @@
             <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
                 <button onclick="showPage('home')" id="nav-home" class="hover:text-cruise-400 transition">Home</button>
                 <button onclick="showPage('docs')" id="nav-docs" class="hover:text-cruise-400 transition">Documentation</button>
-                <button onclick="showPage('playground')" id="nav-playground" class="hover:text-cruise-400 transition">Live Playground</button>
                 <button onclick="showPage('ecosystem')" id="nav-ecosystem" class="hover:text-cruise-400 transition">Ecosystem</button>
                 <button onclick="showPage('roadmap')" id="nav-roadmap" class="hover:text-cruise-400 transition">Roadmap</button>
             </div>
@@ -108,7 +104,6 @@
         <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col gap-4 text-sm font-medium">
             <button onclick="showPage('home'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Home</button>
             <button onclick="showPage('docs'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Documentation</button>
-            <button onclick="showPage('playground'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Live Playground</button>
             <button onclick="showPage('ecosystem'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Ecosystem</button>
             <button onclick="showPage('roadmap'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Roadmap</button>
             <div class="flex flex-col gap-2 pt-2 border-t border-slate-800">
@@ -141,7 +136,7 @@
                 </div>
 
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-semibold text-cruise-400 mb-8">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Version 0.2.0 is Live on PyPI
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Version 0.2.1 is Live on PyPI
                 </div>
 
                 <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
@@ -150,7 +145,7 @@
                 </h1>
 
                 <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-                    Cruise is a lightweight programming language created by Manjas Anand featuring human-readable syntax, custom user-defined functions, PyTorch tensor calculus, HTTP request libraries, and native WebAssembly execution.
+                    Cruise is a lightweight programming language created by Manjas Anand featuring human-readable syntax, custom user-defined functions, PyTorch tensor calculus, and HTTP request libraries.
                 </p>
 
                 <!-- Install Terminal Pill -->
@@ -158,7 +153,7 @@
                     <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-2xl flex items-center justify-between shadow-2xl glow-effect">
                         <div class="flex items-center gap-3 pl-3 text-sm font-mono text-slate-300">
                             <span class="text-cruise-400 font-bold">$</span>
-                            <span id="install-cmd">pip install cruise-lang</span>
+                            <span id="install-cmd">pip install --upgrade cruise-lang</span>
                         </div>
                         <button onclick="copyInstallCmd()" id="copy-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center gap-2 border border-slate-700 transition active:scale-95">
                             <i class="fa-regular fa-copy"></i> Copy
@@ -168,11 +163,8 @@
 
                 <!-- CTA Buttons -->
                 <div class="flex flex-wrap items-center justify-center gap-4">
-                    <button onclick="showPage('docs')" class="bg-gradient-to-r from-cruise-600 to-blue-600 hover:from-cruise-500 hover:to-blue-500 text-white font-semibold text-base px-7 py-3.5 rounded-xl shadow-lg shadow-cruise-600/30 transition transform hover:-translate-y-0.5">
+                    <button onclick="showPage('docs')" class="bg-gradient-to-r from-cruise-600 to-blue-600 hover:from-cruise-500 hover:to-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl shadow-lg shadow-cruise-600/30 transition transform hover:-translate-y-0.5">
                         Read Documentation <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
-                    </button>
-                    <button onclick="showPage('playground')" class="bg-slate-800/90 hover:bg-slate-800 text-white font-semibold text-base px-7 py-3.5 rounded-xl border border-slate-700 transition">
-                        Try Live Playground ⚡
                     </button>
                 </div>
             </div>
@@ -227,7 +219,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-white mb-2">Zero-Config GUI Apps</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">
-                            Build instant desktop windows (<code class="text-amber-400">background</code>, <code class="text-amber-400">button</code>) with graceful headless fallback handling for iPad terminal environments.
+                            Build instant desktop windows (<code class="text-amber-400">background</code>, <code class="text-amber-400">button</code>) with graceful headless fallback handling for terminal environments.
                         </p>
                     </div>
 
@@ -245,11 +237,11 @@
                     <!-- Card 6 -->
                     <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl hover:border-cruise-500/50 transition duration-300">
                         <div class="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-xl mb-6">
-                            <i class="fa-solid fa-bolt"></i>
+                            <i class="fa-solid fa-terminal"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">WebAssembly Engine</h3>
+                        <h3 class="text-xl font-bold text-white mb-2">Cross-Platform REPL</h3>
                         <p class="text-slate-400 text-sm leading-relaxed">
-                            Compiled for client-side browser execution via Pyodide, allowing scripts to run online without remote servers.
+                            Lightweight terminal shell designed to execute scripts on any machine with Python 3.8+.
                         </p>
                     </div>
                 </div>
@@ -320,41 +312,7 @@
         </div>
     </main>
 
-    <!-- PAGE 3: INTERACTIVE WEB REPL / PLAYGROUND -->
-    <main id="page-playground" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
-        <div class="text-center max-w-3xl mx-auto mb-10">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">⚡ Interactive Web REPL</h1>
-            <p class="text-slate-400 text-base">Write and run Cruise statements natively in WebAssembly right inside your browser!</p>
-        </div>
-
-        <div class="code-container rounded-2xl overflow-hidden shadow-2xl p-6 md:p-8 font-mono">
-            <div class="mb-6">
-                <div class="flex justify-between items-center mb-2">
-                    <label class="block text-xs text-slate-400 font-sans font-semibold">Cruise Script Editor (.cru):</label>
-                    <span id="wasm-badge" class="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                        ⏳ Initializing Engine...
-                    </span>
-                </div>
-                <textarea id="repl-input" rows="8" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-emerald-400 focus:outline-none focus:border-cruise-500 font-mono text-sm leading-relaxed" placeholder="define greet(user):&#10;    write('Welcome to Cruise, ' + user + '!')&#10;end&#10;&#10;greet('Manjas')&#10;t = tensor([10, 20, 30])&#10;write(t)&#10;3 times write('Cruising fast! 🚀')"></textarea>
-            </div>
-            
-            <div class="flex items-center justify-between">
-                <button onclick="runCode()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-7 py-3.5 rounded-xl transition shadow-lg shadow-emerald-600/20 active:scale-95">
-                    Run Cruise Code 🚀
-                </button>
-                <button onclick="document.getElementById('repl-input').value='';" class="text-xs text-slate-400 hover:text-white font-sans">
-                    Clear Input
-                </button>
-            </div>
-
-            <div class="mt-8">
-                <label class="block text-xs text-slate-400 mb-2 font-sans font-semibold">Terminal Output Console:</label>
-                <div id="repl-output" class="bg-slate-950 border border-slate-800 rounded-xl p-5 text-slate-300 text-xs font-mono min-h-[120px] whitespace-pre-wrap leading-relaxed">🚢 Loading Cruise WebAssembly Runtime v0.2.0...</div>
-            </div>
-        </div>
-    </main>
-
-    <!-- PAGE 4: ECOSYSTEM & EXTENSIONS -->
+    <!-- PAGE 3: ECOSYSTEM & EXTENSIONS -->
     <main id="page-ecosystem" class="page-section flex-grow max-w-6xl mx-auto px-6 py-12 w-full">
         <div class="text-center max-w-3xl mx-auto mb-14">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">🧩 Cruise Ecosystem & Libraries</h1>
@@ -392,7 +350,7 @@
         </div>
     </main>
 
-    <!-- PAGE 5: ROADMAP -->
+    <!-- PAGE 4: ROADMAP -->
     <main id="page-roadmap" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
         <div class="text-center max-w-3xl mx-auto mb-14">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">🗺️ Project Roadmap</h1>
@@ -410,12 +368,12 @@
                 <span class="bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-4 py-2 rounded-xl border border-emerald-500/30">Completed</span>
             </div>
 
-            <!-- v0.2.0 -->
+            <!-- v0.2.1 -->
             <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex items-center justify-between">
                 <div>
-                    <span class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-wider">v0.2.0 — Current Release</span>
-                    <h3 class="text-xl font-bold text-white mt-1">Functions, WebAssembly & HTTP Engine</h3>
-                    <p class="text-xs text-slate-400 mt-1">Added custom user functions (`define ... end`), `.cru` / `.crui` dual extension support, HTTP request library (`fetch`), and client-side Pyodide WebAssembly runner.</p>
+                    <span class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-wider">v0.2.1 — Current Release</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Functions & HTTP Engine</h3>
+                    <p class="text-xs text-slate-400 mt-1">Added custom user functions (`define ... end`), `.cru` / `.crui` dual extension support, and HTTP request library (`fetch`).</p>
                 </div>
                 <span class="bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-4 py-2 rounded-xl border border-emerald-500/30">Completed</span>
             </div>
@@ -459,10 +417,8 @@
         </div>
     </footer>
 
-    <!-- Interactive Navigation Router & WebAssembly Script -->
+    <!-- Interactive Navigation Router Script -->
     <script>
-        let pyodideInstance = null;
-
         // Page Navigation Switcher
         function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(page => page.classList.remove('active'));
@@ -486,154 +442,6 @@
                 btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
             }, 2000);
         }
-
-        // INITIALIZE WEBASSEMBLY ENGINE
-        async function initPyodideEngine() {
-            const statusBadge = document.getElementById("wasm-badge");
-            const outputBox = document.getElementById("repl-output");
-
-            try {
-                pyodideInstance = await loadPyodide();
-
-                statusBadge.innerText = "✓ Engine Ready";
-                statusBadge.className = "text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
-                
-                outputBox.innerText = "🚢 Cruise v0.2.0 WebAssembly Engine Ready!\nCreated by Manjas Anand\n\nClick 'Run Cruise Code' to execute your script.";
-            } catch (err) {
-                statusBadge.innerText = "❌ Engine Error";
-                statusBadge.className = "text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20";
-                outputBox.innerText = "⚠️ Engine setup error: " + err;
-            }
-        }
-
-        // EXECUTE CODE IN BROWSER
-        async function runCode() {
-            const outputBox = document.getElementById('repl-output');
-            const input = document.getElementById('repl-input').value;
-
-            if (!pyodideInstance) {
-                outputBox.innerText = "⏳ Please wait, Cruise WebAssembly engine is still loading...";
-                return;
-            }
-
-            outputBox.innerText = "⚡ Executing script...\n";
-
-            try {
-                pyodideInstance.globals.set("user_code", input);
-                
-                // Self-contained Cruise Interpreter Engine inside WebAssembly
-                let result = await pyodideInstance.runPythonAsync(`
-import io
-import sys
-
-class CruiseTensor:
-    def __init__(self, data):
-        self.data = data if isinstance(data, list) else [data]
-    def __repr__(self):
-        return f"CruiseTensor({self.data})"
-
-class CruiseInterpreter:
-    def __init__(self):
-        self.variables = {}
-        self.functions = {}
-
-    def execute_script(self, code_text):
-        lines = [line.strip() for line in code_text.splitlines() if line.strip() and not line.strip().startswith("#")]
-        self._run_lines(lines)
-
-    def _run_lines(self, lines):
-        i = 0
-        while i < len(lines):
-            line = lines[i]
-
-            if line.startswith("define "):
-                func_header = line[7:].rstrip(":")
-                func_name, args_part = func_header.split("(")
-                func_name = func_name.strip()
-                arg_names = [a.strip() for a in args_part.rstrip(")").split(",") if a.strip()]
-
-                body_lines = []
-                i += 1
-                while i < len(lines) and lines[i] != "end":
-                    body_lines.append(lines[i])
-                    i += 1
-
-                self.functions[func_name] = {"args": arg_names, "body": body_lines}
-
-            elif "(" in line and line.endswith(")") and not any(line.startswith(kw) for kw in ["write", "tensor", "background", "button"]):
-                func_name, args_part = line.rstrip(")").split("(", 1)
-                func_name = func_name.strip()
-
-                if func_name in self.functions:
-                    raw_args = [a.strip() for a in args_part.split(",") if a.strip()]
-                    func_data = self.functions[func_name]
-
-                    local_env = {}
-                    for param, val in zip(func_data["args"], raw_args):
-                        local_env[param] = eval(val, {}, self.variables)
-
-                    saved = self.variables.copy()
-                    self.variables.update(local_env)
-                    self._run_lines(func_data["body"])
-                    self.variables = saved
-
-            elif "tensor(" in line:
-                var_name, tensor_part = line.split("=", 1)
-                raw_list = tensor_part.split("tensor(")[1].rstrip(")")
-                self.variables[var_name.strip()] = CruiseTensor(eval(raw_list))
-
-            elif line.startswith("background("):
-                color = line.split("background(")[1].rstrip(")").strip("'\"")
-                print(f"🎨 [GUI Rendering]: Background set to '{color}'")
-
-            elif line.startswith("button("):
-                btn_text = line.split("button(")[1].rstrip(")").strip("'\"")
-                print(f"🔘 [GUI Rendering]: Button '{btn_text}' mounted")
-
-            elif "times " in line:
-                count_str, action = line.split("times ", 1)
-                count = int(count_str.strip())
-                for _ in range(count):
-                    self._run_lines([action.strip()])
-
-            elif line.startswith("write("):
-                content = line[6:].rstrip(")")
-                if content in self.variables:
-                    print(self.variables[content])
-                else:
-                    try:
-                        print(eval(content, {}, self.variables))
-                    except Exception:
-                        print(content.strip("'\""))
-
-            elif "=" in line:
-                var, val = line.split("=", 1)
-                self.variables[var.strip()] = eval(val.strip(), {}, self.variables)
-
-            i += 1
-
-buffer = io.StringIO()
-sys.stdout = buffer
-
-try:
-    runner = CruiseInterpreter()
-    runner.execute_script(user_code)
-except Exception as e:
-    print("❌ Runtime Error:", e)
-
-sys.stdout = sys.__stdout__
-buffer.getvalue()
-`);
-
-                outputBox.innerText = result || "✓ Executed successfully with no output.";
-            } catch (err) {
-                outputBox.innerText = "❌ Execution Error:\n" + err;
-            }
-        }
-
-        window.addEventListener("DOMContentLoaded", () => {
-            initPyodideEngine();
-        });
     </script>
 </body>
 </html>
