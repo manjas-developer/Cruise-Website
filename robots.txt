@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://manjas-developer.github.io/Cruise-Website/
+Sitemap: https://manjas-developer.github.io/Cruise-Website/sitemap.xml/
