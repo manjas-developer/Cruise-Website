@@ -10,6 +10,19 @@
 
 ---
 
+<div align="center">
+
+### 💖 Support My Work
+
+If you find this project helpful and want to support my open-source work:
+
+[![Support My Work](https://img.shields.io/badge/Support_My_Work-FF813F?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://buymeachai.ezee.li/manjas_developer)
+
+</div>
+
+---
+
+
 ## 📌 Table of Contents
 - [Overview](#-overview)
 - [Installation & Quick Start](#-installation--quick-start)
@@ -32,5 +45,20 @@
 
 Install or upgrade **Cruise** directly from PyPI using `pip`:
 
-```bash
+bash
 pip install --upgrade cruise-lang
+
+---
+
+<div align="center">
+
+### 💖 Support My Work
+
+If you find this project helpful and want to support my open-source work:
+
+[![Support My Work](https://img.shields.io/badge/Support_My_Work-FF813F?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://buymeachai.ezee.li/manjas_developer)
+
+</div>
+
+---
+
