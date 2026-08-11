@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
     <!-- 🎯 Google Search SEO & Rich Snippets Header -->
@@ -12,41 +12,41 @@
     <link rel="canonical" href="https://manjas-developer.github.io/Cruise-Website/">
 
     <!-- 📱 Open Graph / Facebook / Discord Previews -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://manjas-developer.github.io/Cruise-Website/">
-<meta property="og:title" content="Cruise Programming Language (`cruise-lang`)">
-<meta property="og:description" content="The AI-Ready, Human-Readable Programming Language Created by Manjas Anand.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://manjas-developer.github.io/Cruise-Website/">
+    <meta property="og:title" content="Cruise Programming Language (`cruise-lang`)">
+    <meta property="og:description" content="The AI-Ready, Human-Readable Programming Language Created by Manjas Anand.">
 
-<!-- 🐤 Twitter Card Tags -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://manjas-developer.github.io/Cruise-Website/">
-<meta property="twitter:title" content="Cruise Programming Language">
-<meta property="twitter:description" content="An AI-powered, tensor-ready lightweight programming language interpreter.">
+    <!-- 🐤 Twitter Card Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://manjas-developer.github.io/Cruise-Website/">
+    <meta property="twitter:title" content="Cruise Programming Language">
+    <meta property="twitter:description" content="An AI-powered, tensor-ready lightweight programming language interpreter.">
 
-<!-- 🧠 JSON-LD Structured Data for Google Rich Results -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Cruise Programming Language",
-  "alternateName": "cruise-lang",
-  "operatingSystem": "Cross-platform",
-  "applicationCategory": "DeveloperApplication",
-  "downloadUrl": "https://pypi.org/project/cruise-lang/",
-  "author": {
-    "@type": "Person",
-    "name": "Manjas Anand",
-    "url": "https://github.com/manjas-developer"
-  },
-  "description": "An AI-powered, tensor-ready lightweight programming language interpreter built for speed and simplicity.",
-  "softwareVersion": "0.2.1",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  }
-}
-</script>
+    <!-- 🧠 JSON-LD Structured Data for Google Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Cruise Programming Language",
+      "alternateName": "cruise-lang",
+      "operatingSystem": "Cross-platform",
+      "applicationCategory": "DeveloperApplication",
+      "downloadUrl": "https://pypi.org/project/cruise-lang/",
+      "author": {
+        "@type": "Person",
+        "name": "Manjas Anand",
+        "url": "https://github.com/manjas-developer"
+      },
+      "description": "An AI-powered, tensor-ready lightweight programming language interpreter built for speed and simplicity.",
+      "softwareVersion": "0.2.1",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -129,6 +129,7 @@
                 <button onclick="showPage('docs')" id="nav-docs" class="hover:text-cruise-400 transition">Documentation</button>
                 <button onclick="showPage('ecosystem')" id="nav-ecosystem" class="hover:text-cruise-400 transition">Ecosystem</button>
                 <button onclick="showPage('roadmap')" id="nav-roadmap" class="hover:text-cruise-400 transition">Roadmap</button>
+                <button onclick="showPage('developer')" id="nav-developer" class="hover:text-cruise-400 transition">Developer</button>
             </div>
 
             <!-- External Links (GitHub, PyPI, Support My Work) -->
@@ -156,6 +157,7 @@
             <button onclick="showPage('docs'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Documentation</button>
             <button onclick="showPage('ecosystem'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Ecosystem</button>
             <button onclick="showPage('roadmap'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Roadmap</button>
+            <button onclick="showPage('developer'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Developer</button>
             <div class="flex flex-col gap-2 pt-2 border-t border-slate-800">
                 <a href="https://github.com/manjas-developer/Cruise" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 py-2.5 rounded-lg text-white">
                     <i class="fa-brands fa-github"></i> GitHub Repo
@@ -446,6 +448,105 @@
         </div>
     </main>
 
+    <!-- PAGE 5: ABOUT THE DEVELOPER -->
+    <main id="page-developer" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cruise-500/10 border border-cruise-500/30 text-xs font-semibold text-cruise-400 mb-4">
+                <i class="fa-solid fa-code-branch"></i> Core Maintainer & Creator
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">👨‍💻 About the Developer</h1>
+            <p class="text-slate-400 text-base">Meet the creator behind Cruise Language and open-source developer tooling.</p>
+        </div>
+
+        <!-- Main Developer Profile Card -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-10 shadow-2xl mb-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-cruise-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                <!-- Avatar / Icon -->
+                <div class="w-32 h-32 rounded-3xl bg-gradient-to-tr from-cruise-600 via-blue-500 to-emerald-400 p-1 flex-shrink-0 shadow-xl glow-effect">
+                    <div class="w-full h-full bg-slate-950 rounded-[22px] flex items-center justify-center text-4xl text-cruise-400 font-extrabold font-mono">
+                        MA
+                    </div>
+                </div>
+
+                <!-- Info Block -->
+                <div class="text-center md:text-left flex-grow">
+                    <h2 class="text-3xl font-extrabold text-white mb-1">Manjas Anand</h2>
+                    <p class="text-cruise-400 text-sm font-semibold mb-4">Creator of Cruise Language (`cruise-lang`) & Open Source Developer</p>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        Passionate about programming language design, PyTorch deep learning frameworks, interpreter design, and developer tools. Manjas created Cruise Language to bridge the gap between human-readable domain scripting and native matrix tensor calculus.
+                    </p>
+
+                    <!-- Profile Quick Stats -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-slate-950/80 border border-slate-800 p-3 rounded-xl text-center">
+                            <span class="block text-xs text-slate-400">Main Focus</span>
+                            <span class="text-sm font-bold text-emerald-400">AI & Interpreters</span>
+                        </div>
+                        <div class="bg-slate-950/80 border border-slate-800 p-3 rounded-xl text-center">
+                            <span class="block text-xs text-slate-400">Package Manager</span>
+                            <span class="text-sm font-bold text-cruise-400">PyPI Author</span>
+                        </div>
+                        <div class="bg-slate-950/80 border border-slate-800 p-3 rounded-xl text-center col-span-2 sm:col-span-1">
+                            <span class="block text-xs text-slate-400">Language</span>
+                            <span class="text-sm font-bold text-amber-400">Cruise (`.cru`)</span>
+                        </div>
+                    </div>
+
+                    <!-- Developer Links -->
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3">
+                        <a href="https://github.com/manjas-developer" target="_blank" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl border border-slate-700 transition">
+                            <i class="fa-brands fa-github text-sm"></i> GitHub Profile
+                        </a>
+                        <a href="https://pypi.org/project/cruise-lang/" target="_blank" class="flex items-center gap-2 bg-cruise-600 hover:bg-cruise-500 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition">
+                            <i class="fa-brands fa-python text-sm"></i> PyPI Packages
+                        </a>
+                        <a href="mailto:manjasanand08@gmail.com" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl border border-slate-700 transition">
+                            <i class="fa-solid fa-envelope text-sm"></i> Email
+                        </a>
+                        <a href="https://buymeachai.in/manjasanand08" target="_blank" class="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition shadow-lg shadow-orange-500/20">
+                            <i class="fa-solid fa-heart text-xs"></i> Buy Me a Chai
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Developer Highlights Grid -->
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                <div class="w-10 h-10 rounded-xl bg-cruise-500/10 text-cruise-400 flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-cubes"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Interpreter Architecture</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    Designed and built the full token parsing engine, REPL terminal loop, dynamic memory scoping, and native tensor matrix integrations for Cruise.
+                </p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Deep Learning Tooling</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    Focused on making machine learning workflows zero-boilerplate by binding PyTorch autograd directly into lightweight script syntax.
+                </p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-4">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Open Source Advocate</h3>
+                <p class="text-slate-400 text-xs leading-relaxed">
+                    Committed to keeping Cruise free, open-source, cross-platform, and accessible to developers and researchers worldwide.
+                </p>
+            </div>
+        </div>
+    </main>
+
     <!-- PERSISTENT MIDDLE SUPPORT CALLOUT BANNER (Visible across pages) -->
     <section class="max-w-7xl mx-auto px-6 py-10 w-full">
         <div class="bg-gradient-to-r from-slate-900 via-amber-950/30 to-slate-900 border border-amber-500/30 rounded-3xl p-8 text-center md:text-left md:flex items-center justify-between shadow-2xl relative overflow-hidden">
@@ -479,6 +580,9 @@
             </div>
 
             <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400 font-medium">
+                <button onclick="showPage('developer')" class="hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-user"></i> Developer
+                </button>
                 <a href="https://github.com/manjas-developer/Cruise" target="_blank" class="hover:text-white transition flex items-center gap-1.5">
                     <i class="fa-brands fa-github"></i> GitHub
                 </a>
