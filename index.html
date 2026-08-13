@@ -122,7 +122,7 @@
             <!-- Desktop Nav Links -->
             <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
                 <button onclick="showPage('home')" id="nav-home" class="hover:text-cruise-400 transition">Home</button>
-                <button onclick="showPage('tutorial')" id="nav-tutorial" class="hover:text-cruise-400 transition text-emerald-400 font-semibold">🎓 Line-By-Line Tutorial</button>
+                <button onclick="showPage('tutorial')" id="nav-tutorial" class="hover:text-cruise-400 transition text-emerald-400 font-semibold">🎓 0 to 100 Tutorial</button>
                 <button onclick="showPage('docs')" id="nav-docs" class="hover:text-cruise-400 transition">Documentation</button>
                 <button onclick="showPage('ecosystem')" id="nav-ecosystem" class="hover:text-cruise-400 transition">Ecosystem</button>
                 <button onclick="showPage('roadmap')" id="nav-roadmap" class="hover:text-cruise-400 transition">Roadmap</button>
@@ -151,7 +151,7 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col gap-4 text-sm font-medium">
             <button onclick="showPage('home'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Home</button>
-            <button onclick="showPage('tutorial'); toggleMobileMenu();" class="text-left hover:text-cruise-400 text-emerald-400 font-semibold">🎓 Line-By-Line Tutorial</button>
+            <button onclick="showPage('tutorial'); toggleMobileMenu();" class="text-left hover:text-cruise-400 text-emerald-400 font-semibold">🎓 0 to 100 Tutorial</button>
             <button onclick="showPage('docs'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Documentation</button>
             <button onclick="showPage('ecosystem'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Ecosystem</button>
             <button onclick="showPage('roadmap'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Roadmap</button>
@@ -216,7 +216,7 @@
                 <!-- CTA Buttons -->
                 <div class="flex flex-wrap items-center justify-center gap-4">
                     <button onclick="showPage('tutorial')" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
-                        <i class="fa-solid fa-graduation-cap mr-2"></i> Start Line-By-Line Tutorial
+                        <i class="fa-solid fa-graduation-cap mr-2"></i> Start 0 to 100 Tutorial
                     </button>
                     <button onclick="showPage('docs')" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold text-base px-8 py-3.5 rounded-xl border border-slate-700 transition transform hover:-translate-y-0.5">
                         Quick Documentation
@@ -298,121 +298,276 @@
         </section>
     </main>
 
-    <!-- PAGE 2: LINE-BY-LINE TUTORIAL PAGE -->
+    <!-- PAGE 2: FULL 0 TO 100 TUTORIAL PAGE -->
     <main id="page-tutorial" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
         <div class="text-center max-w-3xl mx-auto mb-14">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-400 mb-4">
-                <i class="fa-solid fa-book-open"></i> Complete Developer Guide
+                <i class="fa-solid fa-book-open"></i> Complete Masterclass Guide
             </div>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">🎓 Line-By-Line Cruise Tutorial</h1>
-            <p class="text-slate-400 text-base">Having trouble getting started? Every line of Cruise v0.3.0 code is explained step-by-step below!</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">🎓 Cruise Language: 0 to 100 Guide</h1>
+            <p class="text-slate-400 text-base">A complete, line-by-line breakdown of every feature in Cruise v0.3.0. From zero syntax knowledge to building deep learning models and GUIs!</p>
         </div>
 
         <div class="space-y-12">
-            <!-- Lesson 1 -->
+            <!-- Lesson 01 -->
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">01</span>
-                    <h2 class="text-2xl font-bold text-white">Variables & Console Output</h2>
+                    <h2 class="text-2xl font-bold text-white">Variables, Types & Console Output</h2>
                 </div>
-                <p class="text-slate-300 text-sm mb-6">Learn how to declare variables with <code class="text-cruise-400 font-mono">let</code> and print data using <code class="text-cruise-400 font-mono">write()</code>.</p>
+                <p class="text-slate-300 text-sm mb-6">Learn how to declare variables with <code class="text-cruise-400 font-mono">let</code> or single-assignments, work with strings/numbers, and output values using <code class="text-cruise-400 font-mono">write()</code>.</p>
                 
                 <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
-<pre class="text-emerald-400"># Lesson 1: Variables and Printing
-let name = "Cruise"
+<pre class="text-emerald-400"># Lesson 01: Declaring Variables and Printing Output
+let name = "Cruise Language"
 let version = 0.3
 let is_active = 1
 
 write("Welcome to " + name)
+write("Current Version:")
 write(version)</pre>
                 </div>
 
                 <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span>Comments start with <code class="text-slate-400">#</code> and are completely ignored by the lexer.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span><code class="text-emerald-400">let name = "Cruise"</code> stores the string <code class="text-amber-300">"Cruise"</code> into the symbol table key <code class="text-white">name</code>.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span><code class="text-emerald-400">let version = 0.3</code> assigns a numerical float value to variable <code class="text-white">version</code>.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4:</span> <span><code class="text-emerald-400">let is_active = 1</code> stores an integer flag into <code class="text-white">is_active</code>.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5:</span> <span><code class="text-emerald-400">write(...)</code> concatenates strings and prints <code class="text-amber-300">"Welcome to Cruise"</code> to terminal stdout.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 6:</span> <span><code class="text-emerald-400">write(version)</code> evaluates variable <code class="text-white">version</code> and prints <code class="text-amber-300">0.3</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span>Comments start with <code class="text-slate-400">#</code> and are safely ignored by the Lexer scanner.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span><code class="text-emerald-400">let name = "Cruise Language"</code> creates a StringNode in the AST and registers <code class="text-white">name</code> in memory.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span><code class="text-emerald-400">let version = 0.3</code> stores float representation <code class="text-amber-300">0.3</code> in variable <code class="text-white">version</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4:</span> <span><code class="text-emerald-400">let is_active = 1</code> defines an integer token stored into memory scope.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 6:</span> <span><code class="text-emerald-400">write("Welcome to " + name)</code> concatenates the string and variable, then outputs to stdout.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 7-8:</span> <span>Prints the literal string label followed by the numeric value of <code class="text-white">version</code>.</span></div>
                 </div>
             </div>
 
-            <!-- Lesson 2 -->
+            <!-- Lesson 02 -->
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">02</span>
-                    <h2 class="text-2xl font-bold text-white">Conditionals & Branching (If / Else)</h2>
+                    <h2 class="text-2xl font-bold text-white">Conditionals & Comparison Logic</h2>
                 </div>
-                <p class="text-slate-300 text-sm mb-6">Use <code class="text-cruise-400 font-mono">if</code>, <code class="text-cruise-400 font-mono">else</code>, and <code class="text-cruise-400 font-mono">end</code> for multiline decision logic.</p>
+                <p class="text-slate-300 text-sm mb-6">Perform decision making using <code class="text-cruise-400 font-mono">if</code>, <code class="text-cruise-400 font-mono">else</code>, and closing <code class="text-cruise-400 font-mono">end</code> keywords.</p>
                 
                 <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
 <pre class="text-emerald-400">let score = 85
 
 if score >= 50:
-    write("Passed successfully! 🎉")
+    write("Status: Passed! 🎉")
 else:
-    write("Please try again! ❌")
+    write("Status: Needs Improvement ❌")
 end</pre>
                 </div>
 
                 <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span>Creates variable <code class="text-white">score</code> and assigns integer value <code class="text-amber-300">85</code>.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span><code class="text-emerald-400">if score >= 50:</code> evaluates the condition. Note the mandatory trailing colon (<code class="text-white">:</code>).</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span>Executes this block because 85 is greater than or equal to 50.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4:</span> <span><code class="text-emerald-400">else:</code> specifies the alternative fallback path if the condition was false.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5:</span> <span>Skipped during execution because condition evaluated to true.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 6:</span> <span><code class="text-emerald-400">end</code> closes the conditional AST block node cleanly.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span>Initializes <code class="text-white">score</code> with integer value <code class="text-amber-300">85</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span><code class="text-emerald-400">if score >= 50:</code> evaluates comparison operator. Note the mandatory trailing colon (<code class="text-white">:</code>).</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4:</span> <span>Evaluates because 85 is greater than or equal to 50, outputting success message.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5-6:</span> <span>The <code class="text-emerald-400">else:</code> block is skipped by the Evaluator during runtime execution.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 7:</span> <span><code class="text-emerald-400">end</code> explicitly closes the AST IfNode conditional construct.</span></div>
                 </div>
             </div>
 
-            <!-- Lesson 3 -->
+            <!-- Lesson 03 -->
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">03</span>
-                    <h2 class="text-2xl font-bold text-white">Functions & Return Values</h2>
+                    <h2 class="text-2xl font-bold text-white">Loops & Iterative Execution</h2>
                 </div>
-                <p class="text-slate-300 text-sm mb-6">Declare reusable logic blocks using <code class="text-cruise-400 font-mono">fn</code> and return values with <code class="text-cruise-400 font-mono">return</code>.</p>
+                <p class="text-slate-300 text-sm mb-6">Iterate dynamically over code using <code class="text-cruise-400 font-mono">while</code> condition loops and block terminators.</p>
                 
                 <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
-<pre class="text-emerald-400">fn multiply(a, b):
-    let result = a * b
-    return result
-end
+<pre class="text-emerald-400">let counter = 1
 
-let answer = multiply(6, 7)
-write(answer)</pre>
+while counter <= 3:
+    write("Loop Iteration Step:")
+    write(counter)
+    let counter = counter + 1
+end</pre>
                 </div>
 
                 <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span><code class="text-emerald-400">fn multiply(a, b):</code> defines a new function taking two parameter arguments <code class="text-white">a</code> and <code class="text-white">b</code>.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span>Calculates product inside local function memory scope frame and assigns to <code class="text-white">result</code>.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span><code class="text-emerald-400">return result</code> emits a ReturnException passing calculated output back to caller.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4:</span> <span><code class="text-emerald-400">end</code> marks the termination of the function definition statement.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5:</span> <span>Calls <code class="text-emerald-400">multiply(6, 7)</code> and stores returned result (<code class="text-amber-300">42</code>) in global variable <code class="text-white">answer</code>.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 6:</span> <span>Outputs value of <code class="text-white">answer</code> to console.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span>Sets variable <code class="text-white">counter</code> starting point to integer <code class="text-amber-300">1</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span><code class="text-emerald-400">while counter <= 3:</code> continuously checks state until counter exceeds 3.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4-5:</span> <span>Prints loop progress text and the current value stored in <code class="text-white">counter</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 6:</span> <span>Increments variable <code class="text-white">counter</code> by 1 in every iteration step to prevent infinite loops.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 7:</span> <span><code class="text-emerald-400">end</code> closes the AST WhileNode statement block.</span></div>
                 </div>
             </div>
 
-            <!-- Lesson 4 -->
+            <!-- Lesson 04 -->
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">04</span>
-                    <h2 class="text-2xl font-bold text-white">PyTorch Tensors & Optimizers</h2>
+                    <h2 class="text-2xl font-bold text-white">Functions & Local Environment Scope</h2>
                 </div>
-                <p class="text-slate-300 text-sm mb-6">Create matrix tensors and train models using built-in autograd and optimizers.</p>
+                <p class="text-slate-300 text-sm mb-6">Create modular routines with <code class="text-cruise-400 font-mono">fn</code>, pass parameters, and pass data back using <code class="text-cruise-400 font-mono">return</code>.</p>
                 
                 <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
-<pre class="text-emerald-400">let weight = tensor([2.0, 4.0], true)
-let optimizer = opt_adam([weight], 0.01)
+<pre class="text-emerald-400">fn compute_area(width, height):
+    let area = width * height
+    return area
+end
 
-write("Initial Weight:")
-write(weight)</pre>
+let total = compute_area(5, 10)
+write("Total Calculated Area:")
+write(total)</pre>
                 </div>
 
                 <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span><code class="text-emerald-400">tensor([2.0, 4.0], true)</code> creates a PyTorch FloatTensor with automatic differentiation (<code class="text-white">requires_grad=True</code>).</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span><code class="text-emerald-400">opt_adam([weight], 0.01)</code> initializes an Adam gradient descent optimizer instance with learning rate 0.01.</span></div>
-                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3-4:</span> <span>Prints tensor representation directly into console stdout.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span><code class="text-emerald-400">fn compute_area(width, height):</code> registers a FuncNode in global symbol environment.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span>Calculates product inside a isolated local memory scope instance.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span><code class="text-emerald-400">return area</code> raises a ReturnException to cleanly pass value back to parent environment.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4:</span> <span><code class="text-emerald-400">end</code> terminates the function definition statement.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 6:</span> <span>Calls function with positional parameters <code class="text-white">5</code> and <code class="text-white">10</code>, storing returned <code class="text-amber-300">50</code> into <code class="text-white">total</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 7-8:</span> <span>Outputs the resulting computation directly to terminal stdout.</span></div>
+                </div>
+            </div>
+
+            <!-- Lesson 05 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">05</span>
+                    <h2 class="text-2xl font-bold text-white">Modules & Local File Imports</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Break projects into clean files and load shared logic dynamically with <code class="text-cruise-400 font-mono">import</code>.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400"># Inside helper.cru
+fn calculate_tax(amount):
+    return amount * 0.15
+end
+
+# Inside main.cru
+import helper
+
+let tax = calculate_tax(100)
+write("Tax Amount:")
+write(tax)</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1-4:</span> <span>File <code class="text-amber-300">helper.cru</code> defines reusable calculation utility function <code class="text-white">calculate_tax</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 7:</span> <span><code class="text-emerald-400">import helper</code> looks up <code class="text-white">helper.cru</code>, tokenizes, parses, and evaluates its AST in current environment.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 9:</span> <span>Invokes function imported directly from the secondary module file seamlessly.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 10-11:</span> <span>Prints calculated tax value (<code class="text-amber-300">15.0</code>) to stdout console.</span></div>
+                </div>
+            </div>
+
+            <!-- Lesson 06 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">06</span>
+                    <h2 class="text-2xl font-bold text-white">CPM Package Manager</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Install, manage, and execute external community libraries from terminal using Cruise Package Manager.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400"># Step 1: Install remote package via Terminal
+$ cruise install math_extra
+
+# Step 2: Use in your script file (app.cru)
+import math_extra
+
+math_extra_hello()</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span>Terminal command <code class="text-emerald-400">cruise install math_extra</code> triggers CPM registry lookup and downloads package.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5:</span> <span><code class="text-emerald-400">import math_extra</code> reads newly downloaded <code class="text-white">math_extra.cru</code> module file into local folder.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 7:</span> <span>Executes package function <code class="text-white">math_extra_hello()</code> directly inside project space.</span></div>
+                </div>
+            </div>
+
+            <!-- Lesson 07 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">07</span>
+                    <h2 class="text-2xl font-bold text-white">PyTorch Tensor Calculus & Autograd</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Perform multi-dimensional matrix operations and automatic backpropagation using native tensor engine integrations.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400">let x = tensor([1.0, 2.0, 3.0, 4.0], true)
+let y = x * 2.0
+
+write("Tensor Matrix Result:")
+write(y)</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span><code class="text-emerald-400">tensor([...], true)</code> creates a PyTorch FloatTensor object with autograd enabled (<code class="text-white">requires_grad=True</code>).</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span>Multiplies whole tensor matrix array element-wise by scalar value <code class="text-amber-300">2.0</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4-5:</span> <span>Prints calculated output tensor result matrix <code class="text-amber-300">[2.0, 4.0, 6.0, 8.0]</code>.</span></div>
+                </div>
+            </div>
+
+            <!-- Lesson 08 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">08</span>
+                    <h2 class="text-2xl font-bold text-white">Machine Learning Optimizers (Adam / SGD)</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Train machine learning model parameter weights directly within Cruise scripts using built-in optimizers.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400">let weights = tensor([0.5, 1.5], true)
+let optimizer = opt_adam([weights], 0.01)
+
+write("Optimizer Initialized:")
+write(weights)</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span>Initializes model weight parameter tensor array with autograd enabled.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span><code class="text-emerald-400">opt_adam([weights], 0.01)</code> creates an Adam gradient descent optimizer instance bound to parameters.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4-5:</span> <span>Outputs configured parameter state to console stdout.</span></div>
+                </div>
+            </div>
+
+            <!-- Lesson 09 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">09</span>
+                    <h2 class="text-2xl font-bold text-white">Built-in Math & Trigonometry Library</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Access math functions like <code class="text-cruise-400 font-mono">sin</code>, <code class="text-cruise-400 font-mono">cos</code>, <code class="text-cruise-400 font-mono">sqrt</code>, and mathematical constant <code class="text-cruise-400 font-mono">pi</code> directly.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400">let angle = pi / 2
+let sine_val = sin(angle)
+let root_val = sqrt(64)
+
+write("Sine of Pi/2:")
+write(sine_val)
+write("Square Root of 64:")
+write(root_val)</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span>Uses built-in constant <code class="text-emerald-400">pi</code> (3.14159...) and divides by 2.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span><code class="text-emerald-400">sin(angle)</code> computes trigonometric sine calculation (<code class="text-amber-300">1.0</code>).</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span><code class="text-emerald-400">sqrt(64)</code> calculates mathematical square root value (<code class="text-amber-300">8.0</code>).</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5-8:</span> <span>Prints evaluated math results directly to terminal console stdout.</span></div>
+                </div>
+            </div>
+
+            <!-- Lesson 10 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">10</span>
+                    <h2 class="text-2xl font-bold text-white">Desktop GUI App Framework</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Mount interactive Tkinter desktop GUI application windows and event handlers in single function calls.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400">fn on_button_click():
+    write("Button Click Event Triggered! 🚀")
+end
+
+gui_window("Cruise App", "Click Me!", on_button_click)</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1-3:</span> <span>Defines custom callback event handler routine <code class="text-white">on_button_click</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5:</span> <span><code class="text-emerald-400">gui_window(...)</code> initializes desktop window titled <code class="text-amber-300">"Cruise App"</code> with interactive button and callback handler.</span></div>
                 </div>
             </div>
         </div>
