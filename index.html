@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
+    <!-- 🎯 Google Search Console Verification -->
+    <meta name="google-site-verification" content="nF7ft1NRkQ2g4tpnRBfBJhAYufqgP18n8rAix5-zjdo" />
+
     <!-- 🎯 Google Search SEO & Rich Snippets Header -->
     <title>Cruise Language — AI-Powered & Tensor-Ready Programming Language</title>
     <meta name="title" content="Cruise Language — AI-Powered & Tensor-Ready Programming Language">
@@ -119,6 +122,7 @@
             <!-- Desktop Nav Links -->
             <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
                 <button onclick="showPage('home')" id="nav-home" class="hover:text-cruise-400 transition">Home</button>
+                <button onclick="showPage('tutorial')" id="nav-tutorial" class="hover:text-cruise-400 transition text-emerald-400 font-semibold">🎓 Line-By-Line Tutorial</button>
                 <button onclick="showPage('docs')" id="nav-docs" class="hover:text-cruise-400 transition">Documentation</button>
                 <button onclick="showPage('ecosystem')" id="nav-ecosystem" class="hover:text-cruise-400 transition">Ecosystem</button>
                 <button onclick="showPage('roadmap')" id="nav-roadmap" class="hover:text-cruise-400 transition">Roadmap</button>
@@ -147,6 +151,7 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col gap-4 text-sm font-medium">
             <button onclick="showPage('home'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Home</button>
+            <button onclick="showPage('tutorial'); toggleMobileMenu();" class="text-left hover:text-cruise-400 text-emerald-400 font-semibold">🎓 Line-By-Line Tutorial</button>
             <button onclick="showPage('docs'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Documentation</button>
             <button onclick="showPage('ecosystem'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Ecosystem</button>
             <button onclick="showPage('roadmap'); toggleMobileMenu();" class="text-left hover:text-cruise-400">Roadmap</button>
@@ -210,12 +215,12 @@
 
                 <!-- CTA Buttons -->
                 <div class="flex flex-wrap items-center justify-center gap-4">
-                    <button onclick="showPage('docs')" class="bg-gradient-to-r from-cruise-600 to-blue-600 hover:from-cruise-500 hover:to-blue-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl shadow-lg shadow-cruise-600/30 transition transform hover:-translate-y-0.5">
-                        Read Documentation <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                    <button onclick="showPage('tutorial')" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-base px-8 py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-graduation-cap mr-2"></i> Start Line-By-Line Tutorial
                     </button>
-                    <a href="https://buymeachai.in/manjasanand08" target="_blank" class="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-semibold text-base px-8 py-3.5 rounded-xl shadow-lg shadow-orange-500/20 transition transform hover:-translate-y-0.5 flex items-center gap-2">
-                        <i class="fa-solid fa-heart"></i> Support My Work
-                    </a>
+                    <button onclick="showPage('docs')" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold text-base px-8 py-3.5 rounded-xl border border-slate-700 transition transform hover:-translate-y-0.5">
+                        Quick Documentation
+                    </button>
                 </div>
             </div>
         </section>
@@ -293,7 +298,127 @@
         </section>
     </main>
 
-    <!-- PAGE 2: FULL DOCUMENTATION -->
+    <!-- PAGE 2: LINE-BY-LINE TUTORIAL PAGE -->
+    <main id="page-tutorial" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-400 mb-4">
+                <i class="fa-solid fa-book-open"></i> Complete Developer Guide
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">🎓 Line-By-Line Cruise Tutorial</h1>
+            <p class="text-slate-400 text-base">Having trouble getting started? Every line of Cruise v0.3.0 code is explained step-by-step below!</p>
+        </div>
+
+        <div class="space-y-12">
+            <!-- Lesson 1 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">01</span>
+                    <h2 class="text-2xl font-bold text-white">Variables & Console Output</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Learn how to declare variables with <code class="text-cruise-400 font-mono">let</code> and print data using <code class="text-cruise-400 font-mono">write()</code>.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400"># Lesson 1: Variables and Printing
+let name = "Cruise"
+let version = 0.3
+let is_active = 1
+
+write("Welcome to " + name)
+write(version)</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span>Comments start with <code class="text-slate-400">#</code> and are completely ignored by the lexer.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span><code class="text-emerald-400">let name = "Cruise"</code> stores the string <code class="text-amber-300">"Cruise"</code> into the symbol table key <code class="text-white">name</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span><code class="text-emerald-400">let version = 0.3</code> assigns a numerical float value to variable <code class="text-white">version</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4:</span> <span><code class="text-emerald-400">let is_active = 1</code> stores an integer flag into <code class="text-white">is_active</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5:</span> <span><code class="text-emerald-400">write(...)</code> concatenates strings and prints <code class="text-amber-300">"Welcome to Cruise"</code> to terminal stdout.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 6:</span> <span><code class="text-emerald-400">write(version)</code> evaluates variable <code class="text-white">version</code> and prints <code class="text-amber-300">0.3</code>.</span></div>
+                </div>
+            </div>
+
+            <!-- Lesson 2 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">02</span>
+                    <h2 class="text-2xl font-bold text-white">Conditionals & Branching (If / Else)</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Use <code class="text-cruise-400 font-mono">if</code>, <code class="text-cruise-400 font-mono">else</code>, and <code class="text-cruise-400 font-mono">end</code> for multiline decision logic.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400">let score = 85
+
+if score >= 50:
+    write("Passed successfully! 🎉")
+else:
+    write("Please try again! ❌")
+end</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span>Creates variable <code class="text-white">score</code> and assigns integer value <code class="text-amber-300">85</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span><code class="text-emerald-400">if score >= 50:</code> evaluates the condition. Note the mandatory trailing colon (<code class="text-white">:</code>).</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span>Executes this block because 85 is greater than or equal to 50.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4:</span> <span><code class="text-emerald-400">else:</code> specifies the alternative fallback path if the condition was false.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5:</span> <span>Skipped during execution because condition evaluated to true.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 6:</span> <span><code class="text-emerald-400">end</code> closes the conditional AST block node cleanly.</span></div>
+                </div>
+            </div>
+
+            <!-- Lesson 3 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">03</span>
+                    <h2 class="text-2xl font-bold text-white">Functions & Return Values</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Declare reusable logic blocks using <code class="text-cruise-400 font-mono">fn</code> and return values with <code class="text-cruise-400 font-mono">return</code>.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400">fn multiply(a, b):
+    let result = a * b
+    return result
+end
+
+let answer = multiply(6, 7)
+write(answer)</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span><code class="text-emerald-400">fn multiply(a, b):</code> defines a new function taking two parameter arguments <code class="text-white">a</code> and <code class="text-white">b</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span>Calculates product inside local function memory scope frame and assigns to <code class="text-white">result</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3:</span> <span><code class="text-emerald-400">return result</code> emits a ReturnException passing calculated output back to caller.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 4:</span> <span><code class="text-emerald-400">end</code> marks the termination of the function definition statement.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 5:</span> <span>Calls <code class="text-emerald-400">multiply(6, 7)</code> and stores returned result (<code class="text-amber-300">42</code>) in global variable <code class="text-white">answer</code>.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 6:</span> <span>Outputs value of <code class="text-white">answer</code> to console.</span></div>
+                </div>
+            </div>
+
+            <!-- Lesson 4 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-cruise-500/20 text-cruise-400 font-mono font-bold flex items-center justify-center text-sm">04</span>
+                    <h2 class="text-2xl font-bold text-white">PyTorch Tensors & Optimizers</h2>
+                </div>
+                <p class="text-slate-300 text-sm mb-6">Create matrix tensors and train models using built-in autograd and optimizers.</p>
+                
+                <div class="bg-slate-950 rounded-xl p-4 border border-slate-800 font-mono text-sm text-slate-200 mb-6 overflow-x-auto">
+<pre class="text-emerald-400">let weight = tensor([2.0, 4.0], true)
+let optimizer = opt_adam([weight], 0.01)
+
+write("Initial Weight:")
+write(weight)</pre>
+                </div>
+
+                <div class="space-y-3 border-t border-slate-800 pt-4 text-xs font-mono text-slate-300">
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 1:</span> <span><code class="text-emerald-400">tensor([2.0, 4.0], true)</code> creates a PyTorch FloatTensor with automatic differentiation (<code class="text-white">requires_grad=True</code>).</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 2:</span> <span><code class="text-emerald-400">opt_adam([weight], 0.01)</code> initializes an Adam gradient descent optimizer instance with learning rate 0.01.</span></div>
+                    <div class="flex gap-3"><span class="text-cruise-400 font-bold">Line 3-4:</span> <span>Prints tensor representation directly into console stdout.</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PAGE 3: FULL DOCUMENTATION -->
     <main id="page-docs" class="page-section flex-grow max-w-7xl mx-auto px-6 py-12 w-full">
         <div class="text-center max-w-3xl mx-auto mb-14">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">📖 Complete Documentation & Syntax</h1>
@@ -355,7 +480,7 @@
         </div>
     </main>
 
-    <!-- PAGE 3: ECOSYSTEM -->
+    <!-- PAGE 4: ECOSYSTEM -->
     <main id="page-ecosystem" class="page-section flex-grow max-w-6xl mx-auto px-6 py-12 w-full">
         <div class="text-center max-w-3xl mx-auto mb-14">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">🧩 Cruise Ecosystem & CPM</h1>
@@ -393,7 +518,7 @@
         </div>
     </main>
 
-    <!-- PAGE 4: ROADMAP -->
+    <!-- PAGE 5: ROADMAP -->
     <main id="page-roadmap" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
         <div class="text-center max-w-3xl mx-auto mb-14">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">🗺️ Project Roadmap</h1>
@@ -401,7 +526,6 @@
         </div>
 
         <div class="space-y-6">
-            <!-- v0.1.1 -->
             <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex items-center justify-between">
                 <div>
                     <span class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-wider">v0.1.1 — Initial Release</span>
@@ -411,7 +535,6 @@
                 <span class="bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-4 py-2 rounded-xl border border-emerald-500/30">Completed</span>
             </div>
 
-            <!-- v0.2.1 -->
             <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex items-center justify-between">
                 <div>
                     <span class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-wider">v0.2.1 — Milestone Release</span>
@@ -421,7 +544,6 @@
                 <span class="bg-emerald-500/20 text-emerald-400 text-xs font-semibold px-4 py-2 rounded-xl border border-emerald-500/30">Completed</span>
             </div>
 
-            <!-- v0.3.0 -->
             <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex items-center justify-between">
                 <div>
                     <span class="text-xs font-bold font-mono text-emerald-400 uppercase tracking-wider">v0.3.0 — Current Live Release 🎉</span>
@@ -433,7 +555,7 @@
         </div>
     </main>
 
-    <!-- PAGE 5: ABOUT THE DEVELOPER -->
+    <!-- PAGE 6: ABOUT THE DEVELOPER -->
     <main id="page-developer" class="page-section flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
         <div class="text-center max-w-3xl mx-auto mb-14">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cruise-500/10 border border-cruise-500/30 text-xs font-semibold text-cruise-400 mb-4">
@@ -527,6 +649,9 @@
             </div>
 
             <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-400 font-medium">
+                <button onclick="showPage('tutorial')" class="hover:text-white transition flex items-center gap-1.5 text-emerald-400">
+                    <i class="fa-solid fa-graduation-cap"></i> Tutorial
+                </button>
                 <button onclick="showPage('developer')" class="hover:text-white transition flex items-center gap-1.5">
                     <i class="fa-solid fa-user"></i> Developer
                 </button>
