@@ -16,7 +16,7 @@
 
 If you find this project helpful and want to support my open-source work:
 
-[![Support My Work](https://img.shields.io/badge/Support_My_Work-FF813F?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://buymeachai.in/manjasanand08)
+[![Support My Work](https://img.shields.io/badge/Support_My_Work-FF813F?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://throne.com/manjas-developer/item/d83a6389-fc12-4d64-a4e1-cf4dc4d1dc45)
 
 </div>
 
@@ -56,7 +56,7 @@ pip install --upgrade cruise-lang
 
 If you find this project helpful and want to support my open-source work:
 
-[![Support My Work](https://img.shields.io/badge/Support_My_Work-FF813F?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://buymeachai.in/manjasanand08)
+[![Support My Work](https://img.shields.io/badge/Support_My_Work-FF813F?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](https://throne.com/manjas-developer/item/d83a6389-fc12-4d64-a4e1-cf4dc4d1dc45)
 
 </div>
 
